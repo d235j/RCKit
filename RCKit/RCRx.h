@@ -4,7 +4,7 @@
 ///
 /// \mainpage RCKit library for Arduino
 ///
-/// This is the Arduino RCKit 1.2 library.
+/// This is the Arduino RCKit library.
 /// 
 /// RCKit provides a kit of software objects that make it easy to build an
 /// RCOIP  (Remote Control Over IP) receiver on Arduino. RCOIP protocol is used to
@@ -49,8 +49,12 @@
 /// \li http://www.youtube.com/watch?v=lzRpyqnD6_M
 ///
 /// The version of the package that this documentation refers to can be downloaded 
-/// from http://www.open.com.au/mikem/arduino/RCKit/RCKit-1.2.zip
+/// from http://www.open.com.au/mikem/arduino/RCKit/RCKit-1.3.zip
 /// You can find the latest version at http://www.open.com.au/mikem/arduino/RCKit
+///
+/// You can also find online help and disussion at http://groups.google.com/group/rckit
+/// Please use that group for all questions and discussions on this topic. 
+/// Do not contact the author directly, unless it is to discuss commercial licensing.
 ///
 /// Tested on Arduino Duemilanove, Diecimila, Mega and Asynclabs Yellowjacket
 /// with arduino-0018 on OpenSuSE 11.1 
@@ -173,6 +177,10 @@
 /// \version 1.0 Initial release
 /// \version 1.1 Added Linear
 /// \version 1.2 Compiles under Arduino 1.0
+/// \version 1.3 Fix error in test suite tat prevvented correct tests with latest versions of AccelStepper
+///              Added documentation for examples.
+///              Added new class MotorControllerSetter, which can be used to control motor controllers with
+///              a direction and (PWM) speed pin.
 
 // Copyright (C) 2010 Mike McCauley
 // $Id: RCRx.h,v 1.4 2010/06/30 02:48:59 mikem Exp mikem $
@@ -218,7 +226,7 @@ class Setter;
 ///
 /// Support of RSSI (receiver signal strength indicator) requires mods to WiShield library g2100.c as per 
 /// http://asynclabs.com/forums/viewtopic.php?f=10&t=385&start=0. You dont have to add this but its a 
-/// good feature.
+/// good feature. It is included in the prebuilt WiShield library mentioned below.
 ///
 /// Correct operation of the WiShield requires you to set the jumper on the WiShield to INT0 or DIG8 to select 
 /// the arduino pin to use for WiShield interrupts, and also to make sure it agrees with the settings of 
@@ -238,7 +246,7 @@ class Setter;
 /// otherwise UDP support will not be compiled into the WiShield library. 
 /// Further, you must edit apps-conf.h and make sure the only APP_* defined is APP_UDPAPP. 
 /// Failure to do this will cause compile errors. A modified version of the WiShield library already 
-/// edited for use with RCKit is available at 
+/// modified for use with RCKit (including RSSI support) is available at 
 /// http://www.open.com.au/mikem/arduino/WiShield-v1.3.0-0-mikem-RCKit.zip
 ///
 /// WiShield will work with Arduino Mega, but with difficulty. The problem is that with the Mega, the SPI 
@@ -340,5 +348,30 @@ private:
     /// in the last request received
     uint16_t      _rssi;
 };
+
+/// @example DifferentialRCRx.pde
+/// This simple example handles 3 RCOIP receiver channels. Its configured like this:
+/// 1 Differential motor driver (receiver channels 0 and 1) driving 4 analog outputs configured as 2 HBridges
+/// 1 Digital output (horn) (receiver channel 4)
+/// This is the program used for the tank shown in http://www.open.com.au/mikem/arduino/RCKit/tank.mp4
+
+/// @example HBridge2RCRx.pde
+/// This simple example handles 3 RCOIP receiver channels. Its configured like this:
+/// This is the program used for the car shown in http://www.open.com.au/mikem/arduino/RCKit/car1.mp4
+
+/// @example HBridgeRCRx.pde
+/// This simple example handles 4 RCOIP receiver channels. Its configured like this:
+/// 2 Servos (receiver channels 0, 1) (left joystick on RCTx)
+/// 1 HBridge (receiver channel 3) driving 2 analog outputs (right joystick on RCTx)
+/// 1 Digital output (horn) (receiver channel 4)
+
+/// @example RCRx.pde
+/// This simple example handles 5 RCOIP receiver channels. Its configured like this:
+/// 4 Servos (receiver channels 0, 1, 2, 3)
+/// 1 Digital output (horn) (receiver channel 4)
+
+/// @example TestSuite.pde
+/// Self test suite for RCKit classes
+
 
 #endif 

@@ -30,6 +30,8 @@ RCKit/Limiter.cpp
 RCKit/SetterDebug.h
 RCKit/Linear.h
 RCKit/Linear.cpp
+RCKit/MotorControllerSetter.h
+RCKit/MotorControllerSetter.cpp
 RCKit/doc/*
 RCKit/examples/RCRx/RCRx.pde
 RCKit/examples/TestSuite/TestSuite.pde

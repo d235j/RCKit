@@ -1,0 +1,16 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$classSetter.html" title="Virtual base class for classes that receive a value, maybe transform it and then do something with it..." alt="" coords="6,309,63,336"/>
+<area shape="rect" id="node3" href="$classAccelStepperPositionSetter.html" title="Setter class that outputs its value to set the position of an AccelStepper." alt="" coords="113,5,295,32"/>
+<area shape="rect" id="node5" href="$classAccelStepperSpeedSetter.html" title="Setter class that outputs its value to set the speed of an AccelStepper." alt="" coords="118,56,290,83"/>
+<area shape="rect" id="node7" href="$classAnalogSetter.html" title="Setter class that sets its value to an analog output pin." alt="" coords="155,107,253,133"/>
+<area shape="rect" id="node9" href="$classDifferentialLRSetter.html" title="Setter class cluster that provides the left&#45;right input to a DifferentialSetter." alt="" coords="135,157,273,184"/>
+<area shape="rect" id="node11" href="$classDifferentialSetter.html" title="Setter class cluster that controls 2 analog outputs based on 2 analog inputs so that a joystic can be..." alt="" coords="144,208,264,235"/>
+<area shape="rect" id="node13" href="$classDigitalSetter.html" title="Setter class that sets its value to an analog output pin." alt="" coords="157,259,251,285"/>
+<area shape="rect" id="node15" href="$classHBridgeSetter.html" title="Setter class that outputs its value to a HBridge configured on 2 output Setter." alt="" coords="152,309,256,336"/>
+<area shape="rect" id="node17" href="$classInverter.html" title="Setter object that inverts its value." alt="" coords="171,360,237,387"/>
+<area shape="rect" id="node19" href="$classLimiter.html" title="Setter class that limits its output to between specified min and max values." alt="" coords="173,411,235,437"/>
+<area shape="rect" id="node21" href="$classLinear.html" title="Setter class that implements linear transform of its input value." alt="" coords="175,461,233,488"/>
+<area shape="rect" id="node23" href="$classMotorControllerSetter.html" title="Setter class that outputs its value to a MotorController configured on 1 digital and one analog outpu..." alt="" coords="131,512,277,539"/>
+<area shape="rect" id="node25" href="$classServoSetter.html" title="Setter class that limits its input to between specified min and max values." alt="" coords="159,563,249,589"/>
+<area shape="rect" id="node27" href="$classSetterDebug.html" title="Class for testing Setters. Used by the sample TestSuite sketch." alt="" coords="157,613,251,640"/>
+</map>

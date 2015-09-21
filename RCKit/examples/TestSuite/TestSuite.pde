@@ -22,6 +22,7 @@
 #include "AccelStepperSpeedSetter.h"
 #include "AccelStepperPositionSetter.h"
 #include "DifferentialSetter.h"
+#include "MotorControllerSetter.h"
 #include "SetterDebug.h"
 
 #define ANALOG_TEST_PINA 0
@@ -47,10 +48,13 @@ AccelStepperPositionSetter asps1(&stepper);
 DifferentialSetter diff1(&d1, &d2);
 DifferentialLRSetter di1(&diff1);
 
+MotorControllerSetter mc1(&d1, &d2);
+
 void setup()
 {
   Serial.begin(9600);
   pinMode(DIGITAL_TEST_PIN, OUTPUT);
+  stepper.setMaxSpeed(1000);
 }
 
 unsigned int errors = 0;
@@ -214,6 +218,26 @@ void loop()
   check(stepper.targetPosition() == -110, "Chaining 1");
   i1.input(-400);
   check(stepper.targetPosition() == -120, "Chaining 2");
+  
+  // MotorController
+  mc1.input(0);
+  check(d1.lastValue() == 0, "MotorControllerSetter 1");
+  check(d2.lastValue() == 254, "MotorControllerSetter 2");
+  mc1.input(100);
+  check(d1.lastValue() == 0, "MotorControllerSetter 1");
+  check(d2.lastValue() == 54, "MotorControllerSetter 2");
+  mc1.input(127);
+  check(d1.lastValue() == 255, "MotorControllerSetter 3");
+  check(d2.lastValue() == 0, "MotorControllerSetter 4");
+  mc1.input(128);
+  check(d1.lastValue() == 255, "MotorControllerSetter 3");
+  check(d2.lastValue() == 2, "MotorControllerSetter 4");
+  mc1.input(200);
+  check(d1.lastValue() == 255, "MotorControllerSetter 5");
+  check(d2.lastValue() == 146, "MotorControllerSetter 6");
+  mc1.input(255);
+  check(d1.lastValue() == 255, "MotorControllerSetter 5");
+  check(d2.lastValue() == 256, "MotorControllerSetter 6");
   
   // All done
   Serial.print("Done. Errors: ");

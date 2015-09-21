@@ -7,8 +7,8 @@
 # $Id: Makefile,v 1.2 2010/06/30 02:49:05 mikem Exp mikem $
 
 PROJNAME = RCKit
-# Dont forget to also change the version at the top of RCRx.h:
-DISTFILE = $(PROJNAME)-1.2.zip
+# Dont forget to also change the version at the top of RCRx.h and in the full package name
+DISTFILE = $(PROJNAME)-1.3.zip
 
 all:	doxygen dist upload
 
