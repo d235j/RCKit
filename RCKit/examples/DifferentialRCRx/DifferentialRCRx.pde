@@ -8,7 +8,7 @@
 // This simple example handles 3 RCOIP receiver channels. Its configured like this:
 // 1 Differential motor driver (receiver channels 0 and 1) driving 4 analog outputs configured as 2 HBridges
 // 1 Digital output (horn) (receiver channel 4)
-// This is the program used for the tank shown in http://www.open.com.au/mikem/arduino/RCKit/tank.mp4
+// This is the program used for the tank shown in http://www.airspayce.com/mikem/arduino/RCKit/tank.mp4
 //
 // This can be used off the shelf with the RCTx transmitter app for iPhone
 // Copyright (C) 2010 Mike McCauley

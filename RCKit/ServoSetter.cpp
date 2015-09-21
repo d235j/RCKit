@@ -1,7 +1,7 @@
 // ServoSetter.cpp
 //
 // Template for a CPP file
-/// \author  Mike McCauley (mikem@open.com.au)
+/// \author  Mike McCauley (mikem@airspayce.com)
 ///
 // Copyright (C) 2010 Mike McCauley
 // $Id: ServoSetter.cpp,v 1.2 2010/06/21 01:33:53 mikem Exp $

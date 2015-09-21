@@ -1,7 +1,7 @@
 // MotorControllerSetter.h
 //
 // Setter class that outputs its value to a MotorController configured on 1 digital and one analog output pins
-/// \author  Mike McCauley (mikem@open.com.au)
+/// \author  Mike McCauley (mikem@airspayce.com)
 ///
 // Copyright (C) 2010 Mike McCauley
 // $Id: MotorControllerSetter.h,v 1.1 2012/08/25 06:18:13 mikem Exp $

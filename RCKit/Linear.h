@@ -1,7 +1,7 @@
 // Linear.h
 //
 // Setter class that implements linear transform of its input value
-/// \author  Mike McCauley (mikem@open.com.au)
+/// \author  Mike McCauley (mikem@airspayce.com)
 ///
 // Copyright (C) 2010 Mike McCauley
 // $Id: Linear.h,v 1.1 2012/08/25 06:18:13 mikem Exp $

@@ -77,8 +77,8 @@
 /// 
 /// Any agreed upon UDP port may be used to carry RCOIP, but the recommended ports are 9048 for the Receiver, 
 /// and any (unspecified) host allocated port number for the Transmitter. Port 9048 is controlled by 
-/// Open System Consultants (http://www.open.com.au), 
-/// and permission is granted by them to use 9048 as the recommnded port for RCOIP
+/// Open System Consultants (http://www.airspayce.com), 
+/// and permission is granted by them to use 9048 as the recommended port for RCOIP
 ///
 /// \par RCOIP Protocol Version 1
 ///

@@ -1,7 +1,7 @@
 // HBridgeSetter.h
 //
 // Setter class that outputs its value to a HBridge configured on 2 analog output pins
-/// \author  Mike McCauley (mikem@open.com.au)
+/// \author  Mike McCauley (mikem@airspayce.com)
 ///
 // Copyright (C) 2010 Mike McCauley
 // $Id: HBridgeSetter.h,v 1.3 2010/06/28 00:56:10 mikem Exp $

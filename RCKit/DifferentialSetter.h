@@ -2,7 +2,7 @@
 //
 // Setter class cluster that controls 2 analog outputs based on 2 analog inputs so that a joystic
 // can be used to control 2 motors like on a tank or bulldozer
-/// \author  Mike McCauley (mikem@open.com.au)
+/// \author  Mike McCauley (mikem@airspayce.com)
 ///
 // Copyright (C) 2010 Mike McCauley
 // $Id: DifferentialSetter.h,v 1.2 2010/06/30 02:48:59 mikem Exp $

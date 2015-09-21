@@ -2,7 +2,7 @@
 //
 // Virtual base class for classes that receive a value, maybe transform it and do something with it
 // 
-/// \author  Mike McCauley (mikem@open.com.au)
+/// \author  Mike McCauley (mikem@airspayce.com)
 ///
 // Copyright (C) 2010 Mike McCauley
 // $Id: Setter.h,v 1.3 2010/06/28 00:56:10 mikem Exp $

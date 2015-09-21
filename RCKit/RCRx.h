@@ -47,12 +47,12 @@
 /// \li http://www.youtube.com/watch?v=i0ZogFmytPI
 ///
 /// There is also a video showing how RCKit can be used with the IRrc library at
-/// http://www.open.com.au/mikem/arduino/IRrc to control a 3 channel infra-red model helicopter at:
+/// http://www.airspayce.com/mikem/arduino/IRrc to control a 3 channel infra-red model helicopter at:
 /// \li http://www.youtube.com/watch?v=lzRpyqnD6_M
 ///
 /// The version of the package that this documentation refers to can be downloaded 
-/// from http://www.open.com.au/mikem/arduino/RCKit/RCKit-2.4.zip
-/// You can find the latest version at http://www.open.com.au/mikem/arduino/RCKit
+/// from http://www.airspayce.com/mikem/arduino/RCKit/RCKit-2.5.zip
+/// You can find the latest version at http://www.airspayce.com/mikem/arduino/RCKit
 ///
 /// You can also find online help and disussion at http://groups.google.com/group/rckit
 /// Please use that group for all questions and discussions on this topic. 
@@ -172,7 +172,7 @@
 ///
 /// \li Arduino IDE 1.0 or later (earlier version do not support the EthernetUdp class required)
 /// \li WiShield (http://asynclabs.com) edited and configured to suit (see below for help)
-/// \li AccelStepper (http://www.open.com.au/mikem/arduino/AccelStepper) 
+/// \li AccelStepper (http://www.airspayce.com/mikem/arduino/AccelStepper) 
 ///
 /// These prerequisites must be installed in the libraries directory of your Arduino devlopment environment, 
 /// even if you are not going to use them with RCRx, otherwise the RCRx will not build.
@@ -217,7 +217,7 @@
 ///
 /// A modified version of the WiShield library already 
 /// modified and configured for use with RCKit (including RSSI support) is available at 
-/// http://www.open.com.au/mikem/arduino/WiShield-v1.3.0-0-mikem-RCKit.zip
+/// http://www.airspayce.com/mikem/arduino/WiShield-v1.3.0-0-mikem-RCKit.zip
 ///
 /// WiShield will work with Arduino Mega, but with difficulty. The problem is that with the Mega, the SPI 
 /// pins that are required for interface with WiShield come out on different pins to the smaller form 
@@ -230,7 +230,7 @@
 /// It is configured with a static IP address of 169.254.1.100.
 /// These setting can be changed by editing WiShieldTransceiver.cpp in the RCKit distribution.
 ///
-/// \author  Mike McCauley (mikem@open.com.au)
+/// \author  Mike McCauley (mikem@airspayce.com)
 /// Do not contact the author directly unless it is to discuss commercial licensing. 
 /// See above for support and discussion groups.
 ///
@@ -253,7 +253,7 @@
 ///
 /// This is the appropriate option if you are creating proprietary applications
 /// and you are not prepared to distribute and share the source code of your
-/// application. Contact info@open.com.au for details.
+/// application. Contact info@airspayce.com for details.
 ///
 /// \par Revision History
 ///
@@ -276,6 +276,7 @@
 /// \version 2.3 Found and documented a problem when you use Arduino digital pin D4 as an output with
 ///              WiFi-Bee, which uses that pin as HIBERNATE. Dont use D4 as output with WiFi-Bee
 /// \version 2.4 Fixed incorrect link to RCTx on App Store.
+/// \version 2.5  Updated author and distribution location details to airspayce.com
 
 #ifndef RCRx_h
 #define RCRx_h
@@ -420,11 +421,11 @@ private:
 /// This simple example handles 3 RCOIP receiver channels. Its configured like this:
 /// 1 Differential motor driver (receiver channels 0 and 1) driving 4 analog outputs configured as 2 HBridges
 /// 1 Digital output (horn) (receiver channel 4)
-/// This is the program used for the tank shown in http://www.open.com.au/mikem/arduino/RCKit/tank.mp4
+/// This is the program used for the tank shown in http://www.airspayce.com/mikem/arduino/RCKit/tank.mp4
 
 /// @example HBridge2RCRx.pde
 /// This simple example handles 3 RCOIP receiver channels. Its configured like this:
-/// This is the program used for the car shown in http://www.open.com.au/mikem/arduino/RCKit/car1.mp4
+/// This is the program used for the car shown in http://www.airspayce.com/mikem/arduino/RCKit/car1.mp4
 
 /// @example HBridgeRCRx.pde
 /// This simple example handles 4 RCOIP receiver channels. Its configured like this:

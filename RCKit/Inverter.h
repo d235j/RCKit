@@ -1,7 +1,7 @@
 // Inverter.h
 //
 // Setter Class that inverts its input value and sends it to the output
-/// \author  Mike McCauley (mikem@open.com.au)
+/// \author  Mike McCauley (mikem@airspayce.com)
 ///
 // Copyright (C) 2010 Mike McCauley
 // $Id: Inverter.h,v 1.2 2010/06/28 00:56:10 mikem Exp $

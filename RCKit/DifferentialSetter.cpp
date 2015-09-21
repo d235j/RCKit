@@ -1,7 +1,7 @@
 // DifferentialSetter.cpp
 //
 // Template for a CPP file
-/// \author  Mike McCauley (mikem@open.com.au)
+/// \author  Mike McCauley (mikem@airspayce.com)
 ///
 // Copyright (C) 2010 Mike McCauley
 // $Id: DifferentialSetter.cpp,v 1.2 2012/08/25 06:18:13 mikem Exp $

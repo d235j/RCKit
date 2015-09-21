@@ -1,7 +1,7 @@
 // WiShieldTransceiver.cpp
 //
 // Class for WiShield based RCOIP transceiver
-/// \author  Mike McCauley (mikem@open.com.au)
+/// \author  Mike McCauley (mikem@airspayce.com)
 ///
 // Copyright (C) 2012 Mike McCauley
 // $Id: WiShieldTransceiver.cpp,v 1.1 2012/09/23 21:55:57 mikem Exp mikem $

@@ -1,7 +1,7 @@
 // DigitalSetter.h
 //
 // Setter class that outputs its value to a analog output pin
-/// \author  Mike McCauley (mikem@open.com.au)
+/// \author  Mike McCauley (mikem@airspayce.com)
 ///
 // Copyright (C) 2010 Mike McCauley
 // $Id: DigitalSetter.h,v 1.2 2010/06/28 00:56:10 mikem Exp $

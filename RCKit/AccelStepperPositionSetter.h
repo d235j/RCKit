@@ -1,7 +1,7 @@
 // AccelStepperPositionSetter.h
 //
 // Setter class that outputs its value to set the position of an AccelStepper
-/// \author  Mike McCauley (mikem@open.com.au)
+/// \author  Mike McCauley (mikem@airspayce.com)
 ///
 // Copyright (C) 2010 Mike McCauley
 // $Id: AccelStepperPositionSetter.h,v 1.2 2010/06/21 01:33:53 mikem Exp $
@@ -17,7 +17,7 @@ class AccelStepper;
 /// \class AccelStepperPositionSetter AccelStepperPositionSetter.h <AccelStepperPositionSetter.h>
 /// \brief Setter class that outputs its value to set the position of an AccelStepper
 ///
-/// Requires the AccelStepper library seehttp://www.open.com.au/mikem/arduino/AccelStepper/
+/// Requires the AccelStepper library seehttp://www.airspayce.com/mikem/arduino/AccelStepper/
 ///
 class AccelStepperPositionSetter : public Setter
 {   

@@ -1,7 +1,7 @@
 // Limiter.h
 //
 // Setter class that limits its input to between specified min and max values
-/// \author  Mike McCauley (mikem@open.com.au)
+/// \author  Mike McCauley (mikem@airspayce.com)
 ///
 // Copyright (C) 2010 Mike McCauley
 // $Id: Limiter.h,v 1.3 2012/08/25 06:18:13 mikem Exp $

@@ -1,7 +1,7 @@
 // RCRx.cpp
 //
 // Remote Control Receiver module for RCOIP protocol
-/// \author  Mike McCauley (mikem@open.com.au)
+/// \author  Mike McCauley (mikem@airspayce.com)
 ///
 // Copyright (C) 2010 Mike McCauley
 // $Id: RCRx.cpp,v 1.5 2012/09/23 21:55:57 mikem Exp mikem $

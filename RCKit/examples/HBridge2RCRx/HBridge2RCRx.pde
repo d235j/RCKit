@@ -6,7 +6,7 @@
 // This compiles to about 15000 bytes on Duemilanove, and will not fit in Diecimila.
 //
 // This simple example handles 3 RCOIP receiver channels. Its configured like this:
-// This is the program used for the car shown in http://www.open.com.au/mikem/arduino/RCKit/car1.mp4
+// This is the program used for the car shown in http://www.airspayce.com/mikem/arduino/RCKit/car1.mp4
 //
 // This can be used off the shelf with the RCTx transmitter app for iPhone
 // Copyright (C) 2010 Mike McCauley

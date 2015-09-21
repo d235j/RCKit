@@ -1,7 +1,7 @@
 // SetterDebug.cpp
 //
 // Class for testing and debugging Setter and subclasses
-/// \author  Mike McCauley (mikem@open.com.au)
+/// \author  Mike McCauley (mikem@airspayce.com)
 ///
 // Copyright (C) 2010 Mike McCauley
 // $Id: SetterDebug.cpp,v 1.3 2010/06/28 00:56:10 mikem Exp $

@@ -1,7 +1,7 @@
 // SetterDebug.h
 //
 // Class for testing and debugging Setter and subclasses
-/// \author  Mike McCauley (mikem@open.com.au)
+/// \author  Mike McCauley (mikem@airspayce.com)
 ///
 // Copyright (C) 2010 Mike McCauley
 // $Id: SetterDebug.h,v 1.4 2012/08/25 06:18:13 mikem Exp $

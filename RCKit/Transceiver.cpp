@@ -1,7 +1,7 @@
 // Transceiver.cpp
 //
 // Abstract base class for RCOIP transceivers
-/// \author  Mike McCauley (mikem@open.com.au)
+/// \author  Mike McCauley (mikem@airspayce.com)
 ///
 // Copyright (C) 2012 Mike McCauley
 // $Id: Transceiver.cpp,v 1.1 2012/09/23 21:55:57 mikem Exp mikem $

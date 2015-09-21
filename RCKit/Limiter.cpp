@@ -1,7 +1,7 @@
 // Limiter.cpp
 //
 // Setter class that limits its input to between specified min and max values
-/// \author  Mike McCauley (mikem@open.com.au)
+/// \author  Mike McCauley (mikem@airspayce.com)
 ///
 // Copyright (C) 2010 Mike McCauley
 // $Id: Limiter.cpp,v 1.1 2010/06/18 22:34:41 mikem Exp $
