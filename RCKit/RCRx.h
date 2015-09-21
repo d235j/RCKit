@@ -44,6 +44,10 @@
 /// \li http://www.youtube.com/watch?v=SKwY-CcotRY
 /// \li http://www.youtube.com/watch?v=i0ZogFmytPI
 ///
+/// There is also a video showing how RCKit can be used with the IRrc library at
+/// http://www.open.com.au/mikem/arduino/IRrc to control a 3 channel infra-red model helicopter at:
+/// \li http://www.youtube.com/watch?v=lzRpyqnD6_M
+///
 /// The version of the package that this documentation refers to can be downloaded 
 /// from http://www.open.com.au/mikem/arduino/RCKit/RCKit-1.1.zip
 /// You can find the latest version at http://www.open.com.au/mikem/arduino/RCKit
@@ -96,17 +100,18 @@
 /// RCRx will automatically respond to received commands with RCOIPv1ReplyReceiverStatus messages 
 /// as appropriate to the configured timeouts etc. See the RCOIP protocol document for more details.
 /// 
-/// \par Examples
+/// \par Example Sketches
 ///
 /// Several example Arduino sketches are included, including a regression 
 /// test suite and a sample complete 5 channel receiver with Servo outputs.
 ///
-/// The following example programs are provided:
+/// The following example sketches are provided:
 /// \li TestSuite
 /// \li RCRx 
 /// \li HBridgeRCRx
 /// \li HBridge2RCRx
 /// \li DifferentialRCRx
+///
 ///
 /// \par RCTx iPhone App
 ///

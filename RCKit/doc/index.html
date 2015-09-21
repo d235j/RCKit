@@ -37,6 +37,9 @@ Videos explaining how it works and what you can do with it can be found at: <ul>
 <li><a href="http://www.youtube.com/watch?v=SKwY-CcotRY">http://www.youtube.com/watch?v=SKwY-CcotRY</a> </li>
 <li><a href="http://www.youtube.com/watch?v=i0ZogFmytPI">http://www.youtube.com/watch?v=i0ZogFmytPI</a></li>
 </ul>
+There is also a video showing how RCKit can be used with the IRrc library at <a href="http://www.open.com.au/mikem/arduino/IRrc">http://www.open.com.au/mikem/arduino/IRrc</a> to control a 3 channel infra-red model helicopter at: <ul>
+<li><a href="http://www.youtube.com/watch?v=lzRpyqnD6_M">http://www.youtube.com/watch?v=lzRpyqnD6_M</a></li>
+</ul>
 The version of the package that this documentation refers to can be downloaded from <a href="http://www.open.com.au/mikem/arduino/RCKit/RCKit-1.1.zip">http://www.open.com.au/mikem/arduino/RCKit/RCKit-1.1.zip</a> You can find the latest version at <a href="http://www.open.com.au/mikem/arduino/RCKit">http://www.open.com.au/mikem/arduino/RCKit</a><p>
 Tested on Arduino Duemilanove, Diecimila, Mega and Asynclabs Yellowjacket with arduino-0018 on OpenSuSE 11.1 and avr-libc-1.6.2-5.11, cross-avr-binutils-2.19-9.1 and cross-avr-gcc43-4.3.3_20081022-9.3<p>
 <dl class="user" compact><dt><b>Setters</b></dt><dd></dd></dl>
@@ -60,9 +63,9 @@ The following transformation <a class="el" href="classSetter.html" title="Virtua
 By default, <a class="el" href="classRCRx.html" title="Remote Control Receiver module for RCOIP protocol on Arduino.">RCRx</a> is configured as an Ad-Hoc Wi-Fi network with SSID of 'RCArduino' By default, the network is Open (ie no encryption) and It is configured with a static IP address of 169.254.1.100. These setting can be changed by editing RCRx.cpp in the RCKit distribution.<p>
 When the <a class="el" href="classRCRx.html" title="Remote Control Receiver module for RCOIP protocol on Arduino.">RCRx</a> object is constructed, it must be given an array of <a class="el" href="classSetter.html" title="Virtual base class for classes that receive a value, maybe transform it and then...">Setter</a> objects. When a <a class="el" href="structRCOIPv1CmdSetAnalogChannels.html" title="SetAnalogChannels command message structure.">RCOIPv1CmdSetAnalogChannels</a> is received by <a class="el" href="classRCRx.html" title="Remote Control Receiver module for RCOIP protocol on Arduino.">RCRx</a>, The <a class="el" href="classSetter.html" title="Virtual base class for classes that receive a value, maybe transform it and then...">Setter</a> corresponding to each Channel value in the <a class="el" href="structRCOIPv1CmdSetAnalogChannels.html" title="SetAnalogChannels command message structure.">RCOIPv1CmdSetAnalogChannels</a> command will be passed to the respective <a class="el" href="classSetter.html" title="Virtual base class for classes that receive a value, maybe transform it and then...">Setter</a> in the analogOutputs array. The Arduino software is expected to be configured so that each analogOutput is connected to a <a class="el" href="classSetter.html" title="Virtual base class for classes that receive a value, maybe transform it and then...">Setter</a> that will implement the received value, perhaps by setting an analog or digital output on an Arduino pin. <a class="el" href="classSetter.html" title="Virtual base class for classes that receive a value, maybe transform it and then...">Setter</a> objects are provided to achieve this.<p>
 <a class="el" href="classRCRx.html" title="Remote Control Receiver module for RCOIP protocol on Arduino.">RCRx</a> will automatically respond to received commands with <a class="el" href="structRCOIPv1ReplyReceiverStatus.html" title="ReceiverStatus reply message structure.">RCOIPv1ReplyReceiverStatus</a> messages as appropriate to the configured timeouts etc. See the <a class="el" href="classRCOIP.html" title="This section describes the RCOIP (Remote Control Over IP) protocol.">RCOIP</a> protocol document for more details.<p>
-<dl class="user" compact><dt><b>Examples</b></dt><dd></dd></dl>
+<dl class="user" compact><dt><b>Example Sketches</b></dt><dd></dd></dl>
 Several example Arduino sketches are included, including a regression test suite and a sample complete 5 channel receiver with Servo outputs.<p>
-The following example programs are provided: <ul>
+The following example sketches are provided: <ul>
 <li>TestSuite </li>
 <li><a class="el" href="classRCRx.html" title="Remote Control Receiver module for RCOIP protocol on Arduino.">RCRx</a> </li>
 <li>HBridgeRCRx </li>
@@ -97,7 +100,7 @@ This software and the <a class="el" href="classRCOIP.html" title="This section d
 <dl class="version" compact><dt><b>Version:</b></dt><dd>1.0 Initial release <p>
 1.1 Added <a class="el" href="classLinear.html" title="Setter class that implements linear transform of its input value.">Linear</a> </dd></dl>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Wed Jul 21 07:33:51 2010 for RCKit by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Thu Jul 22 09:31:12 2010 for RCKit by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>
