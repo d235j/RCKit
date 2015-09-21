@@ -8,9 +8,9 @@
 // Copyright (C) 2010 Mike McCauley
 // $Id: $
 
+#include <SPI.h>
 #include <WiShield.h>
 #include <Ethernet.h>
-#include <SPI.h>
 #include <Servo.h>
 #include "Setter.h"
 #include "Inverter.h"

@@ -12,9 +12,9 @@
 // Copyright (C) 2010 Mike McCauley
 
 
+#include <SPI.h>
 #include <WiShield.h>
 #include <Ethernet.h>
-#include <SPI.h>
 #include <WiShieldTransceiver.h>
 #include <RCRx.h>
 #include <Servo.h>

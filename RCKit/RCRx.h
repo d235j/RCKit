@@ -51,7 +51,7 @@
 /// \li http://www.youtube.com/watch?v=lzRpyqnD6_M
 ///
 /// The version of the package that this documentation refers to can be downloaded 
-/// from http://www.open.com.au/mikem/arduino/RCKit/RCKit-2.1.zip
+/// from http://www.open.com.au/mikem/arduino/RCKit/RCKit-2.2.zip
 /// You can find the latest version at http://www.open.com.au/mikem/arduino/RCKit
 ///
 /// You can also find online help and disussion at http://groups.google.com/group/rckit
@@ -267,6 +267,8 @@
 ///              Add support for WiShield and Ethernet transceivers, with examples to suit
 /// \version 2.1 Some files were missing from the 2.0 release. Clarified the fact that only Arduino 1.0 and 
 ///              later is now suported (due to incompatible changes in Ethernet UDP support)
+/// \version 2.2 Compiler problems were reported unless SPI.h was include first in sketches (although
+///              I could not reproduce this). Changed examples to suit.
 
 #ifndef RCRx_h
 #define RCRx_h

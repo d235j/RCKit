@@ -27,9 +27,9 @@
 // This can be used off the shelf with the RCTx transmitter app for iPhone
 // Copyright (C) 2010 Mike McCauley
 
+#include <SPI.h>
 #include <WiShield.h>
 #include <Ethernet.h>
-#include <SPI.h>
 #include <EthernetTransceiver.h>
 #include <RCRx.h>
 #include <Servo.h>

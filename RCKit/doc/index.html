@@ -75,7 +75,7 @@
 <ul>
 <li><a href="http://www.youtube.com/watch?v=lzRpyqnD6_M">http://www.youtube.com/watch?v=lzRpyqnD6_M</a></li>
 </ul>
-<p>The version of the package that this documentation refers to can be downloaded from <a href="http://www.open.com.au/mikem/arduino/RCKit/RCKit-2.1.zip">http://www.open.com.au/mikem/arduino/RCKit/RCKit-2.1.zip</a> You can find the latest version at <a href="http://www.open.com.au/mikem/arduino/RCKit">http://www.open.com.au/mikem/arduino/RCKit</a></p>
+<p>The version of the package that this documentation refers to can be downloaded from <a href="http://www.open.com.au/mikem/arduino/RCKit/RCKit-2.2.zip">http://www.open.com.au/mikem/arduino/RCKit/RCKit-2.2.zip</a> You can find the latest version at <a href="http://www.open.com.au/mikem/arduino/RCKit">http://www.open.com.au/mikem/arduino/RCKit</a></p>
 <p>You can also find online help and disussion at <a href="http://groups.google.com/group/rckit">http://groups.google.com/group/rckit</a> Please use that group for all questions and discussions on this topic. Do not contact the author directly, unless it is to discuss commercial licensing.</p>
 <p>Tested on Arduino Duemilanove, Diecimila, Mega and Asynclabs Yellowjacket with arduino-1.0 and arduino 1.0.1 on OpenSuSE 12/ and avr-libc-1.6.2-5.11, cross-avr-binutils-2.19-9.1 and cross-avr-gcc43-4.3.3_20081022-9.3</p>
 <dl class="user"><dt><b>RCRx</b></dt><dd></dd></dl>
@@ -175,7 +175,9 @@
 <dd>
 2.0 Caution: API Change: existing <a class="el" href="classRCRx.html" title="Remote Control Receiver module for RCOIP protocol on Arduino.">RCRx</a> sketches will not work with this new version without (minor) modifications. Separate the WiShield WiFi driver code out into a separate <a class="el" href="classTransceiver.html" title="Abstract base class for a transceiver device that will send and receive messages on behalf of RCRx cl...">Transceiver</a> object. Rationalise some includes and headers Add support for WiShield and Ethernet transceivers, with examples to suit </dd>
 <dd>
-2.1 Some files were missing from the 2.0 release. Clarified the fact that only Arduino 1.0 and later is now suported (due to incompatible changes in Ethernet UDP support) </dd></dl>
+2.1 Some files were missing from the 2.0 release. Clarified the fact that only Arduino 1.0 and later is now suported (due to incompatible changes in Ethernet UDP support) </dd>
+<dd>
+2.2 Compiler problems were reported unless SPI.h was include first in sketches (although I could not reproduce this). Changed examples to suit. </dd></dl>
 </div></div>
 
 
