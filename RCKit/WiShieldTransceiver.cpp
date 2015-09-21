@@ -4,7 +4,7 @@
 /// \author  Mike McCauley (mikem@open.com.au)
 ///
 // Copyright (C) 2012 Mike McCauley
-// $Id: DifferentialSetter.cpp,v 1.2 2012/08/25 06:18:13 mikem Exp mikem $
+// $Id: WiShieldTransceiver.cpp,v 1.1 2012/09/23 21:55:57 mikem Exp mikem $
 
 #include "WiShieldTransceiver.h"
 // .pde file must also #include <WiShield.h>
@@ -56,6 +56,8 @@ WiShieldTransceiver* theTransceiver = NULL;
 // Glue between the WiShield C side and the RCRx C++ side
 // Most of this is equivalent to the contents of udpapp.c example in WiShield
 // This C interface explains why we can only have at most one instance of WiShieldTransceiver
+// Also works with Seeed Studio WiFi-Bee, provided you do not use Arduino Digital pin 4 as an output 
+// (it is cponnected to HIBERNATE on the WiFi Bee).
 extern "C"
 {
 #include "uip.h"

@@ -4,7 +4,7 @@
 /// \author  Mike McCauley (mikem@open.com.au)
 ///
 // Copyright (C) 2010 Mike McCauley
-// $Id: AnalogSetter.cpp,v 1.4 2012/08/25 06:18:13 mikem Exp mikem $
+// $Id: AnalogSetter.cpp,v 1.4 2012/08/25 06:18:13 mikem Exp $
 
 #include "AnalogSetter.h"
 #if ARDUINO >= 100

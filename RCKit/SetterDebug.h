@@ -4,7 +4,7 @@
 /// \author  Mike McCauley (mikem@open.com.au)
 ///
 // Copyright (C) 2010 Mike McCauley
-// $Id: SetterDebug.h,v 1.4 2012/08/25 06:18:13 mikem Exp mikem $
+// $Id: SetterDebug.h,v 1.4 2012/08/25 06:18:13 mikem Exp $
 
 #ifndef SetterDebug_h
 #define SetterDebug_h

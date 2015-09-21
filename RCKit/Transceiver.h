@@ -2,7 +2,7 @@
 //
 // Base class for an RCRx transceiver device
 // Copyright (C) 2010 Mike McCauley
-// $Id: DifferentialSetter.h,v 1.2 2010/06/30 02:48:59 mikem Exp $
+// $Id: Transceiver.h,v 1.1 2012/09/23 21:55:57 mikem Exp mikem $
 
 #ifndef Transceiver_h
 #define Transceiver_h

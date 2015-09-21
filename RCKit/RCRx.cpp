@@ -4,7 +4,7 @@
 /// \author  Mike McCauley (mikem@open.com.au)
 ///
 // Copyright (C) 2010 Mike McCauley
-// $Id: RCRx.cpp,v 1.4 2012/08/25 06:18:13 mikem Exp mikem $
+// $Id: RCRx.cpp,v 1.5 2012/09/23 21:55:57 mikem Exp mikem $
 
 #include "RCRx.h"
 #include "Setter.h"

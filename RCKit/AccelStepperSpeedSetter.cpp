@@ -4,7 +4,7 @@
 /// \author  Mike McCauley (mikem@open.com.au)
 ///
 // Copyright (C) 2010 Mike McCauley
-// $Id: AccelStepperSpeedSetter.cpp,v 1.1 2010/06/18 22:34:41 mikem Exp $
+// $Id: AccelStepperSpeedSetter.cpp,v 1.2 2012/09/23 21:55:57 mikem Exp mikem $
 
 #include "AccelStepperSpeedSetter.h"
 #include <AccelStepper.h>

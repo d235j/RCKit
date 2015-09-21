@@ -4,7 +4,7 @@
 /// \author  Mike McCauley (mikem@open.com.au)
 ///
 // Copyright (C) 2012 Mike McCauley
-// $Id: DifferentialSetter.cpp,v 1.2 2012/08/25 06:18:13 mikem Exp mikem $
+// $Id: EthernetTransceiver.cpp,v 1.1 2012/09/23 21:55:57 mikem Exp mikem $
 
 #include <EthernetTransceiver.h>
 #include <Ethernet.h>

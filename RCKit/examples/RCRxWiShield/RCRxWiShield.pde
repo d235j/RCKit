@@ -53,7 +53,7 @@ WiShieldTransceiver transceiver;
 #define HORN_PIN 8
 #define NUM_OUTPUTS 5
 #define SERVO_0_PIN 3
-#define SERVO_1_PIN 4
+#define SERVO_1_PIN 4 // Use a different pin like 7 with WiFi-Bee. Pin 4 is HIBERNATE.
 #define SERVO_2_PIN 5
 #define SERVO_3_PIN 6
 

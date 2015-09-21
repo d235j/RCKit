@@ -2,7 +2,7 @@
 //
 // Remote Control Receiver module for RCOIP protocol
 // Copyright (C) 2010-2012 Mike McCauley
-// $Id: RCRx.h,v 1.5 2012/08/25 06:18:13 mikem Exp mikem $
+// $Id: RCRx.h,v 1.6 2012/09/23 21:55:57 mikem Exp mikem $
 
 /// \mainpage RCKit library for Arduino
 ///
@@ -51,7 +51,7 @@
 /// \li http://www.youtube.com/watch?v=lzRpyqnD6_M
 ///
 /// The version of the package that this documentation refers to can be downloaded 
-/// from http://www.open.com.au/mikem/arduino/RCKit/RCKit-2.2.zip
+/// from http://www.open.com.au/mikem/arduino/RCKit/RCKit-2.3.zip
 /// You can find the latest version at http://www.open.com.au/mikem/arduino/RCKit
 ///
 /// You can also find online help and disussion at http://groups.google.com/group/rckit
@@ -113,7 +113,7 @@
 /// multiple type of communications transport.
 /// A Transceiver is an object responsible for communicating with an RCOIP transmitter. Several types of 
 /// Transceiver are supported by the standard RCRx library:
-/// - WiShield WiFi shield or Yellowjacket, using the WiShield library.
+/// - WiShield WiFi shield or Yellowjacket or WiFi Bee, using the WiShield library.
 /// - Ethernet shield, or EtherTen, using the standard Arduino Ethernet library.
 /// You can define your own subclass of the Transceiver class to implement your own transports 
 /// (if you do so, consider contributing it back to the RCRx project).
@@ -204,7 +204,10 @@
 ///       D8          USE_DIG8_INTR  Digital pin 8
 /// \endcode
 ///
-/// For YellowJacket (which has no jumper), leave it as USE_DIG0_INTR.
+/// For YellowJacket and WiFi Bee (which has no jumper), leave it as USE_DIG0_INTR.
+///
+/// Caution: on WiFi Bee, Arduino Digital pin 4 is connected to the WiFi Chip HIBERNATE pin. 
+/// Do not use pin D4 as an RCKit output pin.
 ///
 /// In order for WiShield library to support UDP (as needed by this module), 
 /// you MUST set UIP_CONF_UDP to 1 in uip-conf.h. This is an unfortunate but necessary requirement, 
@@ -234,7 +237,8 @@
 /// This software and the RCOIP protocol is Copyright (C) 2010-20112 Mike McCauley. Use is subject to license
 /// conditions. The main licensing options available are GPL V2 or Commercial:
 /// 
-/// This library has been tested with Duemilanove and WiShield 1.0 and iPhone 3.0
+/// This library has been tested with Duemilanove and (WiShield 1.0 or YellowJacket or WiFi Bee 1) 
+/// and iPhone 3.0
 ///
 /// \par Open Source Licensing GPL V2
 ///
@@ -269,6 +273,8 @@
 ///              later is now suported (due to incompatible changes in Ethernet UDP support)
 /// \version 2.2 Compiler problems were reported unless SPI.h was include first in sketches (although
 ///              I could not reproduce this). Changed examples to suit.
+/// \version 2.3 Found and documented a problem when you use Arduino digital pin D4 as an output with
+///              WiFi-Bee, which uses that pin as HIBERNATE. Dont use D4 as output with WiFi-Bee
 
 #ifndef RCRx_h
 #define RCRx_h
