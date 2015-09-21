@@ -51,7 +51,7 @@
 /// \li http://www.youtube.com/watch?v=lzRpyqnD6_M
 ///
 /// The version of the package that this documentation refers to can be downloaded 
-/// from http://www.open.com.au/mikem/arduino/RCKit/RCKit-2.0.zip
+/// from http://www.open.com.au/mikem/arduino/RCKit/RCKit-2.1.zip
 /// You can find the latest version at http://www.open.com.au/mikem/arduino/RCKit
 ///
 /// You can also find online help and disussion at http://groups.google.com/group/rckit
@@ -59,7 +59,7 @@
 /// Do not contact the author directly, unless it is to discuss commercial licensing.
 ///
 /// Tested on Arduino Duemilanove, Diecimila, Mega and Asynclabs Yellowjacket
-/// with arduino-0018 on OpenSuSE 11.1 
+/// with arduino-1.0 and arduino 1.0.1 on OpenSuSE 12/
 /// and avr-libc-1.6.2-5.11,
 /// cross-avr-binutils-2.19-9.1 and cross-avr-gcc43-4.3.3_20081022-9.3
 ///
@@ -170,6 +170,7 @@
 ///
 /// \par Prerequisites
 ///
+/// \li Arduino IDE 1.0 or later (earlier version do not support the EthernetUdp class required)
 /// \li WiShield (http://asynclabs.com) edited and configured to suit (see below for help)
 /// \li AccelStepper (http://www.open.com.au/mikem/arduino/AccelStepper) 
 ///
@@ -264,6 +265,8 @@
 ///              Separate the WiShield WiFi driver code out into a separate Transceiver object.
 ///              Rationalise some includes and headers
 ///              Add support for WiShield and Ethernet transceivers, with examples to suit
+/// \version 2.1 Some files were missing from the 2.0 release. Clarified the fact that only Arduino 1.0 and 
+///              later is now suported (due to incompatible changes in Ethernet UDP support)
 
 #ifndef RCRx_h
 #define RCRx_h

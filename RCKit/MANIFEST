@@ -32,8 +32,15 @@ RCKit/Linear.h
 RCKit/Linear.cpp
 RCKit/MotorControllerSetter.h
 RCKit/MotorControllerSetter.cpp
+RCKit/Transceiver.h
+RCKit/Transceiver.cpp
+RCKit/WiShieldTransceiver.h
+RCKit/WiShieldTransceiver.cpp
+RCKit/EthernetTransceiver.h
+RCKit/EthernetTransceiver.cpp
 RCKit/doc/*
-RCKit/examples/RCRx/RCRx.pde
+RCKit/examples/RCRxWiShield/RCRxWiShield.pde
+RCKit/examples/RCRxEthernet/RCRxEthernet.pde
 RCKit/examples/TestSuite/TestSuite.pde
 RCKit/examples/DifferentialRCRx/DifferentialRCRx.pde
 RCKit/examples/HBridgeRCRx/HBridgeRCRx.pde

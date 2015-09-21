@@ -107,7 +107,7 @@
 <a name="l00051"></a>00051 <span class="comment">/// \li http://www.youtube.com/watch?v=lzRpyqnD6_M</span>
 <a name="l00052"></a>00052 <span class="comment">///</span>
 <a name="l00053"></a>00053 <span class="comment">/// The version of the package that this documentation refers to can be downloaded </span>
-<a name="l00054"></a>00054 <span class="comment">/// from http://www.open.com.au/mikem/arduino/RCKit/RCKit-2.0.zip</span>
+<a name="l00054"></a>00054 <span class="comment">/// from http://www.open.com.au/mikem/arduino/RCKit/RCKit-2.1.zip</span>
 <a name="l00055"></a>00055 <span class="comment">/// You can find the latest version at http://www.open.com.au/mikem/arduino/RCKit</span>
 <a name="l00056"></a>00056 <span class="comment">///</span>
 <a name="l00057"></a>00057 <span class="comment">/// You can also find online help and disussion at http://groups.google.com/group/rckit</span>
@@ -115,7 +115,7 @@
 <a name="l00059"></a>00059 <span class="comment">/// Do not contact the author directly, unless it is to discuss commercial licensing.</span>
 <a name="l00060"></a>00060 <span class="comment">///</span>
 <a name="l00061"></a>00061 <span class="comment">/// Tested on Arduino Duemilanove, Diecimila, Mega and Asynclabs Yellowjacket</span>
-<a name="l00062"></a>00062 <span class="comment">/// with arduino-0018 on OpenSuSE 11.1 </span>
+<a name="l00062"></a>00062 <span class="comment">/// with arduino-1.0 and arduino 1.0.1 on OpenSuSE 12/</span>
 <a name="l00063"></a>00063 <span class="comment">/// and avr-libc-1.6.2-5.11,</span>
 <a name="l00064"></a>00064 <span class="comment">/// cross-avr-binutils-2.19-9.1 and cross-avr-gcc43-4.3.3_20081022-9.3</span>
 <a name="l00065"></a>00065 <span class="comment">///</span>
@@ -226,275 +226,278 @@
 <a name="l00170"></a>00170 <span class="comment">///</span>
 <a name="l00171"></a>00171 <span class="comment">/// \par Prerequisites</span>
 <a name="l00172"></a>00172 <span class="comment">///</span>
-<a name="l00173"></a>00173 <span class="comment">/// \li WiShield (http://asynclabs.com) edited and configured to suit (see below for help)</span>
-<a name="l00174"></a>00174 <span class="comment">/// \li AccelStepper (http://www.open.com.au/mikem/arduino/AccelStepper) </span>
-<a name="l00175"></a>00175 <span class="comment">///</span>
-<a name="l00176"></a>00176 <span class="comment">/// These prerequisites must be installed in the libraries directory of your Arduino devlopment environment, </span>
-<a name="l00177"></a>00177 <span class="comment">/// even if you are not going to use them with RCRx, otherwise the RCRx will not build.</span>
-<a name="l00178"></a>00178 <span class="comment">/// </span>
-<a name="l00179"></a>00179 <span class="comment">/// \par Installation</span>
-<a name="l00180"></a>00180 <span class="comment">///</span>
-<a name="l00181"></a>00181 <span class="comment">/// Install in the usual way: unzip the distribution zip file to the libraries</span>
-<a name="l00182"></a>00182 <span class="comment">/// sub-folder of your Arduino IDE sketchbook. </span>
-<a name="l00183"></a>00183 <span class="comment">///</span>
-<a name="l00184"></a>00184 <span class="comment">/// \par WiShield Library Configuration</span>
-<a name="l00185"></a>00185 <span class="comment">///</span>
-<a name="l00186"></a>00186 <span class="comment">/// Requires the Asynclabs WiShield library to be installed, even if you are not using</span>
-<a name="l00187"></a>00187 <span class="comment">/// the WiShieldTransceiver. See http://asynclabs.com/wiki/index.php?title=WiShield_library</span>
-<a name="l00188"></a>00188 <span class="comment">/// Install the  WiShield library in the libraries directory of your arduino IDE installation, </span>
-<a name="l00189"></a>00189 <span class="comment">/// then follow the configuration steps below:</span>
-<a name="l00190"></a>00190 <span class="comment">///</span>
-<a name="l00191"></a>00191 <span class="comment">/// Support of RSSI (receiver signal strength indicator) requires mods to WiShield library g2100.c as per </span>
-<a name="l00192"></a>00192 <span class="comment">/// http://asynclabs.com/forums/viewtopic.php?f=10&amp;t=385&amp;start=0. You dont have to add this but its a </span>
-<a name="l00193"></a>00193 <span class="comment">/// good feature. It is included in the prebuilt WiShield library mentioned below.</span>
-<a name="l00194"></a>00194 <span class="comment">///</span>
-<a name="l00195"></a>00195 <span class="comment">/// Correct operation of the WiShield requires you to set the jumper on the WiShield to INT0 or DIG8 to select </span>
-<a name="l00196"></a>00196 <span class="comment">/// the arduino pin to use for WiShield interrupts, and also to make sure it agrees with the settings of </span>
-<a name="l00197"></a>00197 <span class="comment">/// USE_DIG0_INTR or  USE_DIG8_INTR in spi.h in the WiShield library (which defaults to </span>
-<a name="l00198"></a>00198 <span class="comment">/// using Arduino digital pin 2, and which means setting the WiShield jumper to INT0 setting). Yes, the naming</span>
-<a name="l00199"></a>00199 <span class="comment">/// conventions are inconsistent :-(. In summary:</span>
-<a name="l00200"></a>00200 <span class="comment">/// \code</span>
-<a name="l00201"></a>00201 <span class="comment">///  WiShield jumper   spi.h          Arduino</span>
-<a name="l00202"></a>00202 <span class="comment">///       INT0        USE_DIG0_INTR  Digital pin 2</span>
-<a name="l00203"></a>00203 <span class="comment">///       D8          USE_DIG8_INTR  Digital pin 8</span>
-<a name="l00204"></a>00204 <span class="comment">/// \endcode</span>
-<a name="l00205"></a>00205 <span class="comment">///</span>
-<a name="l00206"></a>00206 <span class="comment">/// For YellowJacket (which has no jumper), leave it as USE_DIG0_INTR.</span>
-<a name="l00207"></a>00207 <span class="comment">///</span>
-<a name="l00208"></a>00208 <span class="comment">/// In order for WiShield library to support UDP (as needed by this module), </span>
-<a name="l00209"></a>00209 <span class="comment">/// you MUST set UIP_CONF_UDP to 1 in uip-conf.h. This is an unfortunate but necessary requirement, </span>
-<a name="l00210"></a>00210 <span class="comment">/// otherwise UDP support will not be compiled into the WiShield library. </span>
-<a name="l00211"></a>00211 <span class="comment">/// Further, you must edit apps-conf.h and make sure the only APP_* defined is APP_UDPAPP. </span>
-<a name="l00212"></a>00212 <span class="comment">/// Failure to do this will cause compile errors. </span>
-<a name="l00213"></a>00213 <span class="comment">///</span>
-<a name="l00214"></a>00214 <span class="comment">/// A modified version of the WiShield library already </span>
-<a name="l00215"></a>00215 <span class="comment">/// modified and configured for use with RCKit (including RSSI support) is available at </span>
-<a name="l00216"></a>00216 <span class="comment">/// http://www.open.com.au/mikem/arduino/WiShield-v1.3.0-0-mikem-RCKit.zip</span>
-<a name="l00217"></a>00217 <span class="comment">///</span>
-<a name="l00218"></a>00218 <span class="comment">/// WiShield will work with Arduino Mega, but with difficulty. The problem is that with the Mega, the SPI </span>
-<a name="l00219"></a>00219 <span class="comment">/// pins that are required for interface with WiShield come out on different pins to the smaller form </span>
-<a name="l00220"></a>00220 <span class="comment">/// factor arduinos like Diecimila and Duemilanove. So, to make the Mega work with the WiShield, you </span>
-<a name="l00221"></a>00221 <span class="comment">/// have to reroute the SPI pin to different Arduino pins, as per </span>
-<a name="l00222"></a>00222 <span class="comment">/// http://asynclabs.com/forums/viewtopic.php?f=13&amp;t=19&amp;hilit=mega&amp;start=10</span>
-<a name="l00223"></a>00223 <span class="comment">/// </span>
-<a name="l00224"></a>00224 <span class="comment">/// By default, WiShieldTransceiver is configured as an Ad-Hoc Wi-Fi network with SSID of &#39;RCArduino&#39; </span>
-<a name="l00225"></a>00225 <span class="comment">/// By default, the network is Open (ie no encryption) and</span>
-<a name="l00226"></a>00226 <span class="comment">/// It is configured with a static IP address of 169.254.1.100.</span>
-<a name="l00227"></a>00227 <span class="comment">/// These setting can be changed by editing WiShieldTransceiver.cpp in the RCKit distribution.</span>
-<a name="l00228"></a>00228 <span class="comment">///</span>
-<a name="l00229"></a>00229 <span class="comment">/// \author  Mike McCauley (mikem@open.com.au)</span>
-<a name="l00230"></a>00230 <span class="comment">/// Do not contact the author directly unless it is to discuss commercial licensing. </span>
-<a name="l00231"></a>00231 <span class="comment">/// See above for support and discussion groups.</span>
-<a name="l00232"></a>00232 <span class="comment">///</span>
-<a name="l00233"></a>00233 <span class="comment">/// This software and the RCOIP protocol is Copyright (C) 2010-20112 Mike McCauley. Use is subject to license</span>
-<a name="l00234"></a>00234 <span class="comment">/// conditions. The main licensing options available are GPL V2 or Commercial:</span>
-<a name="l00235"></a>00235 <span class="comment">/// </span>
-<a name="l00236"></a>00236 <span class="comment">/// This library has been tested with Duemilanove and WiShield 1.0 and iPhone 3.0</span>
-<a name="l00237"></a>00237 <span class="comment">///</span>
-<a name="l00238"></a>00238 <span class="comment">/// \par Open Source Licensing GPL V2</span>
-<a name="l00239"></a>00239 <span class="comment">///</span>
-<a name="l00240"></a>00240 <span class="comment">/// This is the appropriate option if you want to share the source code of your</span>
-<a name="l00241"></a>00241 <span class="comment">/// application with everyone you distribute it to, and you also want to give them</span>
-<a name="l00242"></a>00242 <span class="comment">/// the right to share who uses it. If you wish to use this software under Open</span>
-<a name="l00243"></a>00243 <span class="comment">/// Source Licensing, you must contribute all your source code to the open source</span>
-<a name="l00244"></a>00244 <span class="comment">/// community in accordance with the GPL Version 2 when your application is</span>
-<a name="l00245"></a>00245 <span class="comment">/// distributed. See http://www.gnu.org/copyleft/gpl.html</span>
-<a name="l00246"></a>00246 <span class="comment">/// </span>
-<a name="l00247"></a>00247 <span class="comment">/// \par Commercial Licensing</span>
-<a name="l00248"></a>00248 <span class="comment">///</span>
-<a name="l00249"></a>00249 <span class="comment">/// This is the appropriate option if you are creating proprietary applications</span>
-<a name="l00250"></a>00250 <span class="comment">/// and you are not prepared to distribute and share the source code of your</span>
-<a name="l00251"></a>00251 <span class="comment">/// application. Contact info@open.com.au for details.</span>
-<a name="l00252"></a>00252 <span class="comment">///</span>
-<a name="l00253"></a>00253 <span class="comment">/// \par Revision History</span>
-<a name="l00254"></a>00254 <span class="comment">///</span>
-<a name="l00255"></a>00255 <span class="comment">/// \version 1.0 Initial release</span>
-<a name="l00256"></a>00256 <span class="comment">/// \version 1.1 Added Linear</span>
-<a name="l00257"></a>00257 <span class="comment">/// \version 1.2 Compiles under Arduino 1.0</span>
-<a name="l00258"></a>00258 <span class="comment">/// \version 1.3 Fix error in test suite tat prevvented correct tests with latest versions of AccelStepper</span>
-<a name="l00259"></a>00259 <span class="comment">///              Added documentation for examples.</span>
-<a name="l00260"></a>00260 <span class="comment">///              Added new class MotorControllerSetter, which can be used to control motor controllers with</span>
-<a name="l00261"></a>00261 <span class="comment">///              a direction and (PWM) speed pin.</span>
-<a name="l00262"></a>00262 <span class="comment">/// \version 2.0 Caution: API Change: existing RCRx sketches will not work with this new version without (minor) </span>
-<a name="l00263"></a>00263 <span class="comment">///              modifications.</span>
-<a name="l00264"></a>00264 <span class="comment">///              Separate the WiShield WiFi driver code out into a separate Transceiver object.</span>
-<a name="l00265"></a>00265 <span class="comment">///              Rationalise some includes and headers</span>
-<a name="l00266"></a>00266 <span class="comment">///              Add support for WiShield and Ethernet transceivers, with examples to suit</span>
-<a name="l00267"></a>00267 <span class="comment"></span>
-<a name="l00268"></a>00268 <span class="preprocessor">#ifndef RCRx_h</span>
-<a name="l00269"></a>00269 <span class="preprocessor"></span><span class="preprocessor">#define RCRx_h</span>
-<a name="l00270"></a>00270 <span class="preprocessor"></span>
-<a name="l00271"></a>00271 <span class="preprocessor">#if (ARDUINO &lt; 100)</span>
-<a name="l00272"></a>00272 <span class="preprocessor"></span><span class="preprocessor">#include &quot;WProgram.h&quot;</span>
-<a name="l00273"></a>00273 <span class="preprocessor">#else</span>
-<a name="l00274"></a>00274 <span class="preprocessor"></span><span class="preprocessor">#include &quot;Arduino.h&quot;</span>
-<a name="l00275"></a>00275 <span class="preprocessor">#endif</span>
-<a name="l00276"></a>00276 <span class="preprocessor"></span>
-<a name="l00277"></a>00277 <span class="keyword">class </span><a class="code" href="classSetter.html" title="Virtual base class for classes that receive a value, maybe transform it and then do something with it...">Setter</a>;
-<a name="l00278"></a>00278 <span class="keyword">class </span><a class="code" href="classTransceiver.html" title="Abstract base class for a transceiver device that will send and receive messages on behalf of RCRx cl...">Transceiver</a>;
-<a name="l00279"></a>00279 <span class="comment"></span>
-<a name="l00280"></a>00280 <span class="comment">/////////////////////////////////////////////////////////////////////</span>
-<a name="l00281"></a>00281 <span class="comment">/// \class RCRx RCRx.h &lt;RCRx.h&gt;</span>
-<a name="l00282"></a>00282 <span class="comment">/// \brief Remote Control Receiver module for RCOIP protocol on Arduino.</span>
-<a name="l00283"></a>00283 <span class="comment">///</span>
-<a name="l00284"></a>00284 <span class="comment">/// \par Overview</span>
-<a name="l00285"></a>00285 <span class="comment">/// This class implements a receiver for RCOIP (Remote Control Over IP). It starts and manages a </span>
-<a name="l00286"></a>00286 <span class="comment">/// WiFi receiver, which receives UDP messages containing RCOIP commands such as remote control channel </span>
-<a name="l00287"></a>00287 <span class="comment">/// values. When channel setting commands are received they are translated into output values which are sent </span>
-<a name="l00288"></a>00288 <span class="comment">/// to Setter objects to control the phycical output devices and pins on the Arduino. </span>
-<a name="l00289"></a>00289 <span class="comment">/// Supports WiShield 1.0 etc.</span>
-<a name="l00290"></a>00290 <span class="comment">///</span>
-<a name="l00291"></a>00291 <span class="comment">/// \par Outputs</span>
-<a name="l00292"></a>00292 <span class="comment">/// RCRx maps RCOIP channels to physical output devices through the analogOutputs array. This is an array </span>
-<a name="l00293"></a>00293 <span class="comment">/// of Setter objects, one for each physical output to be controlled by RCRx. Whenever a RCOIP message </span>
-<a name="l00294"></a>00294 <span class="comment">/// is received with new channel settings, the input() function of each Setter with new data will be </span>
-<a name="l00295"></a>00295 <span class="comment">/// called. This will cause each Setter to set its physical output in response to the remote control</span>
-<a name="l00296"></a>00296 <span class="comment">/// data received by an RCOIP. </span>
-<a name="l00297"></a>00297 <span class="comment">///</span>
-<a name="l00298"></a>00298 <span class="comment">/// \par Failsafe</span>
-<a name="l00299"></a>00299 <span class="comment">/// RCRx supports failsafe behaviour if a connection to the transmitter is lost.</span>
-<a name="l00300"></a>00300 <span class="comment">/// RCRx monitors the time of each received RCOIP request. If no request is received for more than </span>
-<a name="l00301"></a>00301 <span class="comment">/// failInterval milliseconds, it will be considered as disconnected, and the failsafe() function of </span>
-<a name="l00302"></a>00302 <span class="comment">/// every Setter will be called, allowing each Setter to adopt its failsafe configuration </span>
-<a name="l00303"></a>00303 <span class="comment">/// (eg throttle to 0 etc). This allows remote control vehicles to fail safe if the transmitter </span>
-<a name="l00304"></a>00304 <span class="comment">/// fails or goes out of range.</span>
-<a name="l00305"></a><a class="code" href="classRCRx.html">00305</a> <span class="comment"></span><span class="keyword">class </span><a class="code" href="classRCRx.html" title="Remote Control Receiver module for RCOIP protocol on Arduino.">RCRx</a>
-<a name="l00306"></a>00306 {
-<a name="l00307"></a>00307 <span class="keyword">public</span>:<span class="comment"></span>
-<a name="l00308"></a>00308 <span class="comment">    /// Constructor. </span>
-<a name="l00309"></a>00309 <span class="comment">    /// After contruction and initialisation, call the init() and run() functions.</span>
-<a name="l00310"></a>00310 <span class="comment"></span>    <a class="code" href="classRCRx.html#a7c7789ffcd99b2cdd85889adf8f55dd0">RCRx</a>();
-<a name="l00311"></a>00311 <span class="comment"></span>
-<a name="l00312"></a>00312 <span class="comment">    /// Tells this object where to find the transceiver object.</span>
-<a name="l00313"></a>00313 <span class="comment">    /// RCRx requires an instance of a Transceiver object for the device that you are using to</span>
-<a name="l00314"></a>00314 <span class="comment">    /// Received RCOIP requests from the transmitter.</span>
-<a name="l00315"></a>00315 <span class="comment">    /// A number of Transceivers are provided with RCRx:</span>
-<a name="l00316"></a>00316 <span class="comment">    /// - WiShieldTransceiver for WiFi transport with WiSheild</span>
-<a name="l00317"></a>00317 <span class="comment">    /// - EthernetTransceiver for Ethernet transport with Ethernet shield</span>
-<a name="l00318"></a>00318 <span class="comment">    /// or you can define your own.</span>
-<a name="l00319"></a>00319 <span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classRCRx.html#a28b5811fc64a3b9292ee3975e60dd5cd">setTransceiver</a>(<a class="code" href="classTransceiver.html" title="Abstract base class for a transceiver device that will send and receive messages on behalf of RCRx cl...">Transceiver</a>* transceiver);
-<a name="l00320"></a>00320 <span class="comment"></span>
-<a name="l00321"></a>00321 <span class="comment">    /// Specifies the Setters that will be used by this receiver to set its output values</span>
-<a name="l00322"></a>00322 <span class="comment">    /// Whenever a RCOIP message is received with a new value for channel n, it will be passed</span>
-<a name="l00323"></a>00323 <span class="comment">    /// to the Setter at index n by calling the Setters input() function.</span>
-<a name="l00324"></a>00324 <span class="comment">    /// \param[in] analogOutputs Pointer to an array pointers to Setter objects.</span>
-<a name="l00325"></a>00325 <span class="comment">    /// \param[in] numAnalogOutputs Number of elements in analogOutputs</span>
-<a name="l00326"></a>00326 <span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classRCRx.html#a568c83ab82fc901b1e9ef5551d89137d">setOutputs</a>(<a class="code" href="classSetter.html" title="Virtual base class for classes that receive a value, maybe transform it and then do something with it...">Setter</a>** analogOutputs, uint8_t numAnalogOutputs);
-<a name="l00327"></a>00327 <span class="comment"></span>
-<a name="l00328"></a>00328 <span class="comment">    /// Set the output for channel n. Calls the Setter at index n of the analogOutputs</span>
-<a name="l00329"></a>00329 <span class="comment">    /// array. Not usuallly called exernally, this is usually only called</span>
-<a name="l00330"></a>00330 <span class="comment">    /// from within RCRx. Subclasses can override this to get control</span>
-<a name="l00331"></a>00331 <span class="comment">    /// when new analog output values become available</span>
-<a name="l00332"></a>00332 <span class="comment">    /// \param[in] channel The analog channel number output to set</span>
-<a name="l00333"></a>00333 <span class="comment">    /// \param[in] value The new value to set</span>
-<a name="l00334"></a>00334 <span class="comment"></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classRCRx.html#ae0eddc2ed95e988973cad17478a10630">setAnalogOutput</a>(uint8_t channel, <span class="keywordtype">int</span> value);
-<a name="l00335"></a>00335 <span class="comment"></span>
-<a name="l00336"></a>00336 <span class="comment">    /// Initialises the wireless WiFi receiver</span>
-<a name="l00337"></a>00337 <span class="comment">    /// Call once at startup time after addresses etc have been configured.</span>
-<a name="l00338"></a>00338 <span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classRCRx.html#a86cee85b44ffce3fff5609b96892c77c">init</a>();
-<a name="l00339"></a>00339 <span class="comment"></span>
-<a name="l00340"></a>00340 <span class="comment">    /// Call this to process pending Wireless events. Call this as often as possible in your</span>
-<a name="l00341"></a>00341 <span class="comment">    /// main loop. Runs the wireless driver stack or whatever in the Transceiver, </span>
-<a name="l00342"></a>00342 <span class="comment">    /// and does internal housekeeping.</span>
-<a name="l00343"></a>00343 <span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classRCRx.html#a5b4f1b1be349e2f3abb4e17bd16d31f1">run</a>();
-<a name="l00344"></a>00344 <span class="comment"></span>
-<a name="l00345"></a>00345 <span class="comment">    /// Call to handle an incoming UDP message containing an RCOIP command message.</span>
-<a name="l00346"></a>00346 <span class="comment">    /// This is usually only called from the Transceiver, but could be called externally </span>
-<a name="l00347"></a>00347 <span class="comment">    /// for testing purposes etc.</span>
-<a name="l00348"></a>00348 <span class="comment">    /// \param[in] msg Pointer to the RCOIP message</span>
-<a name="l00349"></a>00349 <span class="comment">    /// \param[in] len Length of the PCOIP mesage in bytes</span>
-<a name="l00350"></a>00350 <span class="comment">    /// \param[in] rssi Receiver Signal Strength as reported by the WiFi receiver (if any)</span>
-<a name="l00351"></a>00351 <span class="comment">    /// when the message was received.</span>
-<a name="l00352"></a>00352 <span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classRCRx.html#a3132814af2f57ce796850fa32bd96185">handleRequest</a>(uint8_t *msg, uint16_t len, uint16_t rssi);
-<a name="l00353"></a>00353 <span class="comment"></span>
-<a name="l00354"></a>00354 <span class="comment">    /// Called by RCRx when no RCOIP message has been received for more than failInterval milliseconds.</span>
-<a name="l00355"></a>00355 <span class="comment">    /// Calls the failsafe function for all configured output Setters.</span>
-<a name="l00356"></a>00356 <span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classRCRx.html#a888c1758fc4cc27a97aacc62e187dbd0">failsafe</a>();
-<a name="l00357"></a>00357 <span class="comment"></span>
-<a name="l00358"></a>00358 <span class="comment">    /// Called by RCRx periodically (typically twice per second) to do period processing such as </span>
-<a name="l00359"></a>00359 <span class="comment">    /// detecting loss of incoming messages</span>
-<a name="l00360"></a>00360 <span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classRCRx.html#a4d977724492697cccc1e2453d5609997">periodicTask</a>();
-<a name="l00361"></a>00361 <span class="comment"></span>
-<a name="l00362"></a>00362 <span class="comment">    /// Returns whether the RCRx considers itself to be connected to the transmitter.</span>
-<a name="l00363"></a>00363 <span class="comment">    /// Initialsed to false. Whenever an RCOIP request is receved, set to true. If no  RCOIP request </span>
-<a name="l00364"></a>00364 <span class="comment">    /// is receved for more than  failInterval miliseconds, set to false.</span>
-<a name="l00365"></a>00365 <span class="comment">    /// \return true if the RCRx is still receiving messages from the transmitter.</span>
-<a name="l00366"></a>00366 <span class="comment"></span>    <span class="keywordtype">boolean</span> <a class="code" href="classRCRx.html#a829d0f04d18be5e42b93c840ebd5066e">connected</a>();
-<a name="l00367"></a>00367 <span class="comment"></span>
-<a name="l00368"></a>00368 <span class="comment">    /// Sends an RCOIP reply message</span>
-<a name="l00369"></a>00369 <span class="comment">    /// Usually called internally at most once every _replyInterval milliseconds.</span>
-<a name="l00370"></a>00370 <span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classRCRx.html#a057ec8c6c1e179d30e9f1d2eec1dcbea">sendReply</a>();
-<a name="l00371"></a>00371 
-<a name="l00372"></a>00372 <span class="keyword">protected</span>:
-<a name="l00373"></a>00373 
-<a name="l00374"></a>00374 <span class="keyword">private</span>:<span class="comment"></span>
-<a name="l00375"></a>00375 <span class="comment">    /// The transceiver</span>
-<a name="l00376"></a>00376 <span class="comment"></span>    <a class="code" href="classTransceiver.html" title="Abstract base class for a transceiver device that will send and receive messages on behalf of RCRx cl...">Transceiver</a>*  _transceiver;
-<a name="l00377"></a>00377 <span class="comment"></span>
-<a name="l00378"></a>00378 <span class="comment">    /// Array of output Setters</span>
-<a name="l00379"></a>00379 <span class="comment"></span>    <a class="code" href="classSetter.html" title="Virtual base class for classes that receive a value, maybe transform it and then do something with it...">Setter</a>**      _analogOutputs;
+<a name="l00173"></a>00173 <span class="comment">/// \li Arduino IDE 1.0 or later (earlier version do not support the EthernetUdp class required)</span>
+<a name="l00174"></a>00174 <span class="comment">/// \li WiShield (http://asynclabs.com) edited and configured to suit (see below for help)</span>
+<a name="l00175"></a>00175 <span class="comment">/// \li AccelStepper (http://www.open.com.au/mikem/arduino/AccelStepper) </span>
+<a name="l00176"></a>00176 <span class="comment">///</span>
+<a name="l00177"></a>00177 <span class="comment">/// These prerequisites must be installed in the libraries directory of your Arduino devlopment environment, </span>
+<a name="l00178"></a>00178 <span class="comment">/// even if you are not going to use them with RCRx, otherwise the RCRx will not build.</span>
+<a name="l00179"></a>00179 <span class="comment">/// </span>
+<a name="l00180"></a>00180 <span class="comment">/// \par Installation</span>
+<a name="l00181"></a>00181 <span class="comment">///</span>
+<a name="l00182"></a>00182 <span class="comment">/// Install in the usual way: unzip the distribution zip file to the libraries</span>
+<a name="l00183"></a>00183 <span class="comment">/// sub-folder of your Arduino IDE sketchbook. </span>
+<a name="l00184"></a>00184 <span class="comment">///</span>
+<a name="l00185"></a>00185 <span class="comment">/// \par WiShield Library Configuration</span>
+<a name="l00186"></a>00186 <span class="comment">///</span>
+<a name="l00187"></a>00187 <span class="comment">/// Requires the Asynclabs WiShield library to be installed, even if you are not using</span>
+<a name="l00188"></a>00188 <span class="comment">/// the WiShieldTransceiver. See http://asynclabs.com/wiki/index.php?title=WiShield_library</span>
+<a name="l00189"></a>00189 <span class="comment">/// Install the  WiShield library in the libraries directory of your arduino IDE installation, </span>
+<a name="l00190"></a>00190 <span class="comment">/// then follow the configuration steps below:</span>
+<a name="l00191"></a>00191 <span class="comment">///</span>
+<a name="l00192"></a>00192 <span class="comment">/// Support of RSSI (receiver signal strength indicator) requires mods to WiShield library g2100.c as per </span>
+<a name="l00193"></a>00193 <span class="comment">/// http://asynclabs.com/forums/viewtopic.php?f=10&amp;t=385&amp;start=0. You dont have to add this but its a </span>
+<a name="l00194"></a>00194 <span class="comment">/// good feature. It is included in the prebuilt WiShield library mentioned below.</span>
+<a name="l00195"></a>00195 <span class="comment">///</span>
+<a name="l00196"></a>00196 <span class="comment">/// Correct operation of the WiShield requires you to set the jumper on the WiShield to INT0 or DIG8 to select </span>
+<a name="l00197"></a>00197 <span class="comment">/// the arduino pin to use for WiShield interrupts, and also to make sure it agrees with the settings of </span>
+<a name="l00198"></a>00198 <span class="comment">/// USE_DIG0_INTR or  USE_DIG8_INTR in spi.h in the WiShield library (which defaults to </span>
+<a name="l00199"></a>00199 <span class="comment">/// using Arduino digital pin 2, and which means setting the WiShield jumper to INT0 setting). Yes, the naming</span>
+<a name="l00200"></a>00200 <span class="comment">/// conventions are inconsistent :-(. In summary:</span>
+<a name="l00201"></a>00201 <span class="comment">/// \code</span>
+<a name="l00202"></a>00202 <span class="comment">///  WiShield jumper   spi.h          Arduino</span>
+<a name="l00203"></a>00203 <span class="comment">///       INT0        USE_DIG0_INTR  Digital pin 2</span>
+<a name="l00204"></a>00204 <span class="comment">///       D8          USE_DIG8_INTR  Digital pin 8</span>
+<a name="l00205"></a>00205 <span class="comment">/// \endcode</span>
+<a name="l00206"></a>00206 <span class="comment">///</span>
+<a name="l00207"></a>00207 <span class="comment">/// For YellowJacket (which has no jumper), leave it as USE_DIG0_INTR.</span>
+<a name="l00208"></a>00208 <span class="comment">///</span>
+<a name="l00209"></a>00209 <span class="comment">/// In order for WiShield library to support UDP (as needed by this module), </span>
+<a name="l00210"></a>00210 <span class="comment">/// you MUST set UIP_CONF_UDP to 1 in uip-conf.h. This is an unfortunate but necessary requirement, </span>
+<a name="l00211"></a>00211 <span class="comment">/// otherwise UDP support will not be compiled into the WiShield library. </span>
+<a name="l00212"></a>00212 <span class="comment">/// Further, you must edit apps-conf.h and make sure the only APP_* defined is APP_UDPAPP. </span>
+<a name="l00213"></a>00213 <span class="comment">/// Failure to do this will cause compile errors. </span>
+<a name="l00214"></a>00214 <span class="comment">///</span>
+<a name="l00215"></a>00215 <span class="comment">/// A modified version of the WiShield library already </span>
+<a name="l00216"></a>00216 <span class="comment">/// modified and configured for use with RCKit (including RSSI support) is available at </span>
+<a name="l00217"></a>00217 <span class="comment">/// http://www.open.com.au/mikem/arduino/WiShield-v1.3.0-0-mikem-RCKit.zip</span>
+<a name="l00218"></a>00218 <span class="comment">///</span>
+<a name="l00219"></a>00219 <span class="comment">/// WiShield will work with Arduino Mega, but with difficulty. The problem is that with the Mega, the SPI </span>
+<a name="l00220"></a>00220 <span class="comment">/// pins that are required for interface with WiShield come out on different pins to the smaller form </span>
+<a name="l00221"></a>00221 <span class="comment">/// factor arduinos like Diecimila and Duemilanove. So, to make the Mega work with the WiShield, you </span>
+<a name="l00222"></a>00222 <span class="comment">/// have to reroute the SPI pin to different Arduino pins, as per </span>
+<a name="l00223"></a>00223 <span class="comment">/// http://asynclabs.com/forums/viewtopic.php?f=13&amp;t=19&amp;hilit=mega&amp;start=10</span>
+<a name="l00224"></a>00224 <span class="comment">/// </span>
+<a name="l00225"></a>00225 <span class="comment">/// By default, WiShieldTransceiver is configured as an Ad-Hoc Wi-Fi network with SSID of &#39;RCArduino&#39; </span>
+<a name="l00226"></a>00226 <span class="comment">/// By default, the network is Open (ie no encryption) and</span>
+<a name="l00227"></a>00227 <span class="comment">/// It is configured with a static IP address of 169.254.1.100.</span>
+<a name="l00228"></a>00228 <span class="comment">/// These setting can be changed by editing WiShieldTransceiver.cpp in the RCKit distribution.</span>
+<a name="l00229"></a>00229 <span class="comment">///</span>
+<a name="l00230"></a>00230 <span class="comment">/// \author  Mike McCauley (mikem@open.com.au)</span>
+<a name="l00231"></a>00231 <span class="comment">/// Do not contact the author directly unless it is to discuss commercial licensing. </span>
+<a name="l00232"></a>00232 <span class="comment">/// See above for support and discussion groups.</span>
+<a name="l00233"></a>00233 <span class="comment">///</span>
+<a name="l00234"></a>00234 <span class="comment">/// This software and the RCOIP protocol is Copyright (C) 2010-20112 Mike McCauley. Use is subject to license</span>
+<a name="l00235"></a>00235 <span class="comment">/// conditions. The main licensing options available are GPL V2 or Commercial:</span>
+<a name="l00236"></a>00236 <span class="comment">/// </span>
+<a name="l00237"></a>00237 <span class="comment">/// This library has been tested with Duemilanove and WiShield 1.0 and iPhone 3.0</span>
+<a name="l00238"></a>00238 <span class="comment">///</span>
+<a name="l00239"></a>00239 <span class="comment">/// \par Open Source Licensing GPL V2</span>
+<a name="l00240"></a>00240 <span class="comment">///</span>
+<a name="l00241"></a>00241 <span class="comment">/// This is the appropriate option if you want to share the source code of your</span>
+<a name="l00242"></a>00242 <span class="comment">/// application with everyone you distribute it to, and you also want to give them</span>
+<a name="l00243"></a>00243 <span class="comment">/// the right to share who uses it. If you wish to use this software under Open</span>
+<a name="l00244"></a>00244 <span class="comment">/// Source Licensing, you must contribute all your source code to the open source</span>
+<a name="l00245"></a>00245 <span class="comment">/// community in accordance with the GPL Version 2 when your application is</span>
+<a name="l00246"></a>00246 <span class="comment">/// distributed. See http://www.gnu.org/copyleft/gpl.html</span>
+<a name="l00247"></a>00247 <span class="comment">/// </span>
+<a name="l00248"></a>00248 <span class="comment">/// \par Commercial Licensing</span>
+<a name="l00249"></a>00249 <span class="comment">///</span>
+<a name="l00250"></a>00250 <span class="comment">/// This is the appropriate option if you are creating proprietary applications</span>
+<a name="l00251"></a>00251 <span class="comment">/// and you are not prepared to distribute and share the source code of your</span>
+<a name="l00252"></a>00252 <span class="comment">/// application. Contact info@open.com.au for details.</span>
+<a name="l00253"></a>00253 <span class="comment">///</span>
+<a name="l00254"></a>00254 <span class="comment">/// \par Revision History</span>
+<a name="l00255"></a>00255 <span class="comment">///</span>
+<a name="l00256"></a>00256 <span class="comment">/// \version 1.0 Initial release</span>
+<a name="l00257"></a>00257 <span class="comment">/// \version 1.1 Added Linear</span>
+<a name="l00258"></a>00258 <span class="comment">/// \version 1.2 Compiles under Arduino 1.0</span>
+<a name="l00259"></a>00259 <span class="comment">/// \version 1.3 Fix error in test suite tat prevvented correct tests with latest versions of AccelStepper</span>
+<a name="l00260"></a>00260 <span class="comment">///              Added documentation for examples.</span>
+<a name="l00261"></a>00261 <span class="comment">///              Added new class MotorControllerSetter, which can be used to control motor controllers with</span>
+<a name="l00262"></a>00262 <span class="comment">///              a direction and (PWM) speed pin.</span>
+<a name="l00263"></a>00263 <span class="comment">/// \version 2.0 Caution: API Change: existing RCRx sketches will not work with this new version without (minor) </span>
+<a name="l00264"></a>00264 <span class="comment">///              modifications.</span>
+<a name="l00265"></a>00265 <span class="comment">///              Separate the WiShield WiFi driver code out into a separate Transceiver object.</span>
+<a name="l00266"></a>00266 <span class="comment">///              Rationalise some includes and headers</span>
+<a name="l00267"></a>00267 <span class="comment">///              Add support for WiShield and Ethernet transceivers, with examples to suit</span>
+<a name="l00268"></a>00268 <span class="comment">/// \version 2.1 Some files were missing from the 2.0 release. Clarified the fact that only Arduino 1.0 and </span>
+<a name="l00269"></a>00269 <span class="comment">///              later is now suported (due to incompatible changes in Ethernet UDP support)</span>
+<a name="l00270"></a>00270 <span class="comment"></span>
+<a name="l00271"></a>00271 <span class="preprocessor">#ifndef RCRx_h</span>
+<a name="l00272"></a>00272 <span class="preprocessor"></span><span class="preprocessor">#define RCRx_h</span>
+<a name="l00273"></a>00273 <span class="preprocessor"></span>
+<a name="l00274"></a>00274 <span class="preprocessor">#if (ARDUINO &lt; 100)</span>
+<a name="l00275"></a>00275 <span class="preprocessor"></span><span class="preprocessor">#include &quot;WProgram.h&quot;</span>
+<a name="l00276"></a>00276 <span class="preprocessor">#else</span>
+<a name="l00277"></a>00277 <span class="preprocessor"></span><span class="preprocessor">#include &quot;Arduino.h&quot;</span>
+<a name="l00278"></a>00278 <span class="preprocessor">#endif</span>
+<a name="l00279"></a>00279 <span class="preprocessor"></span>
+<a name="l00280"></a>00280 <span class="keyword">class </span><a class="code" href="classSetter.html" title="Virtual base class for classes that receive a value, maybe transform it and then do something with it...">Setter</a>;
+<a name="l00281"></a>00281 <span class="keyword">class </span><a class="code" href="classTransceiver.html" title="Abstract base class for a transceiver device that will send and receive messages on behalf of RCRx cl...">Transceiver</a>;
+<a name="l00282"></a>00282 <span class="comment"></span>
+<a name="l00283"></a>00283 <span class="comment">/////////////////////////////////////////////////////////////////////</span>
+<a name="l00284"></a>00284 <span class="comment">/// \class RCRx RCRx.h &lt;RCRx.h&gt;</span>
+<a name="l00285"></a>00285 <span class="comment">/// \brief Remote Control Receiver module for RCOIP protocol on Arduino.</span>
+<a name="l00286"></a>00286 <span class="comment">///</span>
+<a name="l00287"></a>00287 <span class="comment">/// \par Overview</span>
+<a name="l00288"></a>00288 <span class="comment">/// This class implements a receiver for RCOIP (Remote Control Over IP). It starts and manages a </span>
+<a name="l00289"></a>00289 <span class="comment">/// WiFi receiver, which receives UDP messages containing RCOIP commands such as remote control channel </span>
+<a name="l00290"></a>00290 <span class="comment">/// values. When channel setting commands are received they are translated into output values which are sent </span>
+<a name="l00291"></a>00291 <span class="comment">/// to Setter objects to control the phycical output devices and pins on the Arduino. </span>
+<a name="l00292"></a>00292 <span class="comment">/// Supports WiShield 1.0 etc.</span>
+<a name="l00293"></a>00293 <span class="comment">///</span>
+<a name="l00294"></a>00294 <span class="comment">/// \par Outputs</span>
+<a name="l00295"></a>00295 <span class="comment">/// RCRx maps RCOIP channels to physical output devices through the analogOutputs array. This is an array </span>
+<a name="l00296"></a>00296 <span class="comment">/// of Setter objects, one for each physical output to be controlled by RCRx. Whenever a RCOIP message </span>
+<a name="l00297"></a>00297 <span class="comment">/// is received with new channel settings, the input() function of each Setter with new data will be </span>
+<a name="l00298"></a>00298 <span class="comment">/// called. This will cause each Setter to set its physical output in response to the remote control</span>
+<a name="l00299"></a>00299 <span class="comment">/// data received by an RCOIP. </span>
+<a name="l00300"></a>00300 <span class="comment">///</span>
+<a name="l00301"></a>00301 <span class="comment">/// \par Failsafe</span>
+<a name="l00302"></a>00302 <span class="comment">/// RCRx supports failsafe behaviour if a connection to the transmitter is lost.</span>
+<a name="l00303"></a>00303 <span class="comment">/// RCRx monitors the time of each received RCOIP request. If no request is received for more than </span>
+<a name="l00304"></a>00304 <span class="comment">/// failInterval milliseconds, it will be considered as disconnected, and the failsafe() function of </span>
+<a name="l00305"></a>00305 <span class="comment">/// every Setter will be called, allowing each Setter to adopt its failsafe configuration </span>
+<a name="l00306"></a>00306 <span class="comment">/// (eg throttle to 0 etc). This allows remote control vehicles to fail safe if the transmitter </span>
+<a name="l00307"></a>00307 <span class="comment">/// fails or goes out of range.</span>
+<a name="l00308"></a><a class="code" href="classRCRx.html">00308</a> <span class="comment"></span><span class="keyword">class </span><a class="code" href="classRCRx.html" title="Remote Control Receiver module for RCOIP protocol on Arduino.">RCRx</a>
+<a name="l00309"></a>00309 {
+<a name="l00310"></a>00310 <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00311"></a>00311 <span class="comment">    /// Constructor. </span>
+<a name="l00312"></a>00312 <span class="comment">    /// After contruction and initialisation, call the init() and run() functions.</span>
+<a name="l00313"></a>00313 <span class="comment"></span>    <a class="code" href="classRCRx.html#a7c7789ffcd99b2cdd85889adf8f55dd0">RCRx</a>();
+<a name="l00314"></a>00314 <span class="comment"></span>
+<a name="l00315"></a>00315 <span class="comment">    /// Tells this object where to find the transceiver object.</span>
+<a name="l00316"></a>00316 <span class="comment">    /// RCRx requires an instance of a Transceiver object for the device that you are using to</span>
+<a name="l00317"></a>00317 <span class="comment">    /// Received RCOIP requests from the transmitter.</span>
+<a name="l00318"></a>00318 <span class="comment">    /// A number of Transceivers are provided with RCRx:</span>
+<a name="l00319"></a>00319 <span class="comment">    /// - WiShieldTransceiver for WiFi transport with WiSheild</span>
+<a name="l00320"></a>00320 <span class="comment">    /// - EthernetTransceiver for Ethernet transport with Ethernet shield</span>
+<a name="l00321"></a>00321 <span class="comment">    /// or you can define your own.</span>
+<a name="l00322"></a>00322 <span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classRCRx.html#a28b5811fc64a3b9292ee3975e60dd5cd">setTransceiver</a>(<a class="code" href="classTransceiver.html" title="Abstract base class for a transceiver device that will send and receive messages on behalf of RCRx cl...">Transceiver</a>* transceiver);
+<a name="l00323"></a>00323 <span class="comment"></span>
+<a name="l00324"></a>00324 <span class="comment">    /// Specifies the Setters that will be used by this receiver to set its output values</span>
+<a name="l00325"></a>00325 <span class="comment">    /// Whenever a RCOIP message is received with a new value for channel n, it will be passed</span>
+<a name="l00326"></a>00326 <span class="comment">    /// to the Setter at index n by calling the Setters input() function.</span>
+<a name="l00327"></a>00327 <span class="comment">    /// \param[in] analogOutputs Pointer to an array pointers to Setter objects.</span>
+<a name="l00328"></a>00328 <span class="comment">    /// \param[in] numAnalogOutputs Number of elements in analogOutputs</span>
+<a name="l00329"></a>00329 <span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classRCRx.html#a568c83ab82fc901b1e9ef5551d89137d">setOutputs</a>(<a class="code" href="classSetter.html" title="Virtual base class for classes that receive a value, maybe transform it and then do something with it...">Setter</a>** analogOutputs, uint8_t numAnalogOutputs);
+<a name="l00330"></a>00330 <span class="comment"></span>
+<a name="l00331"></a>00331 <span class="comment">    /// Set the output for channel n. Calls the Setter at index n of the analogOutputs</span>
+<a name="l00332"></a>00332 <span class="comment">    /// array. Not usuallly called exernally, this is usually only called</span>
+<a name="l00333"></a>00333 <span class="comment">    /// from within RCRx. Subclasses can override this to get control</span>
+<a name="l00334"></a>00334 <span class="comment">    /// when new analog output values become available</span>
+<a name="l00335"></a>00335 <span class="comment">    /// \param[in] channel The analog channel number output to set</span>
+<a name="l00336"></a>00336 <span class="comment">    /// \param[in] value The new value to set</span>
+<a name="l00337"></a>00337 <span class="comment"></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classRCRx.html#ae0eddc2ed95e988973cad17478a10630">setAnalogOutput</a>(uint8_t channel, <span class="keywordtype">int</span> value);
+<a name="l00338"></a>00338 <span class="comment"></span>
+<a name="l00339"></a>00339 <span class="comment">    /// Initialises the wireless WiFi receiver</span>
+<a name="l00340"></a>00340 <span class="comment">    /// Call once at startup time after addresses etc have been configured.</span>
+<a name="l00341"></a>00341 <span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classRCRx.html#a86cee85b44ffce3fff5609b96892c77c">init</a>();
+<a name="l00342"></a>00342 <span class="comment"></span>
+<a name="l00343"></a>00343 <span class="comment">    /// Call this to process pending Wireless events. Call this as often as possible in your</span>
+<a name="l00344"></a>00344 <span class="comment">    /// main loop. Runs the wireless driver stack or whatever in the Transceiver, </span>
+<a name="l00345"></a>00345 <span class="comment">    /// and does internal housekeeping.</span>
+<a name="l00346"></a>00346 <span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classRCRx.html#a5b4f1b1be349e2f3abb4e17bd16d31f1">run</a>();
+<a name="l00347"></a>00347 <span class="comment"></span>
+<a name="l00348"></a>00348 <span class="comment">    /// Call to handle an incoming UDP message containing an RCOIP command message.</span>
+<a name="l00349"></a>00349 <span class="comment">    /// This is usually only called from the Transceiver, but could be called externally </span>
+<a name="l00350"></a>00350 <span class="comment">    /// for testing purposes etc.</span>
+<a name="l00351"></a>00351 <span class="comment">    /// \param[in] msg Pointer to the RCOIP message</span>
+<a name="l00352"></a>00352 <span class="comment">    /// \param[in] len Length of the PCOIP mesage in bytes</span>
+<a name="l00353"></a>00353 <span class="comment">    /// \param[in] rssi Receiver Signal Strength as reported by the WiFi receiver (if any)</span>
+<a name="l00354"></a>00354 <span class="comment">    /// when the message was received.</span>
+<a name="l00355"></a>00355 <span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classRCRx.html#a3132814af2f57ce796850fa32bd96185">handleRequest</a>(uint8_t *msg, uint16_t len, uint16_t rssi);
+<a name="l00356"></a>00356 <span class="comment"></span>
+<a name="l00357"></a>00357 <span class="comment">    /// Called by RCRx when no RCOIP message has been received for more than failInterval milliseconds.</span>
+<a name="l00358"></a>00358 <span class="comment">    /// Calls the failsafe function for all configured output Setters.</span>
+<a name="l00359"></a>00359 <span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classRCRx.html#a888c1758fc4cc27a97aacc62e187dbd0">failsafe</a>();
+<a name="l00360"></a>00360 <span class="comment"></span>
+<a name="l00361"></a>00361 <span class="comment">    /// Called by RCRx periodically (typically twice per second) to do period processing such as </span>
+<a name="l00362"></a>00362 <span class="comment">    /// detecting loss of incoming messages</span>
+<a name="l00363"></a>00363 <span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classRCRx.html#a4d977724492697cccc1e2453d5609997">periodicTask</a>();
+<a name="l00364"></a>00364 <span class="comment"></span>
+<a name="l00365"></a>00365 <span class="comment">    /// Returns whether the RCRx considers itself to be connected to the transmitter.</span>
+<a name="l00366"></a>00366 <span class="comment">    /// Initialsed to false. Whenever an RCOIP request is receved, set to true. If no  RCOIP request </span>
+<a name="l00367"></a>00367 <span class="comment">    /// is receved for more than  failInterval miliseconds, set to false.</span>
+<a name="l00368"></a>00368 <span class="comment">    /// \return true if the RCRx is still receiving messages from the transmitter.</span>
+<a name="l00369"></a>00369 <span class="comment"></span>    <span class="keywordtype">boolean</span> <a class="code" href="classRCRx.html#a829d0f04d18be5e42b93c840ebd5066e">connected</a>();
+<a name="l00370"></a>00370 <span class="comment"></span>
+<a name="l00371"></a>00371 <span class="comment">    /// Sends an RCOIP reply message</span>
+<a name="l00372"></a>00372 <span class="comment">    /// Usually called internally at most once every _replyInterval milliseconds.</span>
+<a name="l00373"></a>00373 <span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classRCRx.html#a057ec8c6c1e179d30e9f1d2eec1dcbea">sendReply</a>();
+<a name="l00374"></a>00374 
+<a name="l00375"></a>00375 <span class="keyword">protected</span>:
+<a name="l00376"></a>00376 
+<a name="l00377"></a>00377 <span class="keyword">private</span>:<span class="comment"></span>
+<a name="l00378"></a>00378 <span class="comment">    /// The transceiver</span>
+<a name="l00379"></a>00379 <span class="comment"></span>    <a class="code" href="classTransceiver.html" title="Abstract base class for a transceiver device that will send and receive messages on behalf of RCRx cl...">Transceiver</a>*  _transceiver;
 <a name="l00380"></a>00380 <span class="comment"></span>
-<a name="l00381"></a>00381 <span class="comment">    /// Number of Setters in _analogOutputs</span>
-<a name="l00382"></a>00382 <span class="comment"></span>    uint8_t       _numAnalogOutputs;
+<a name="l00381"></a>00381 <span class="comment">    /// Array of output Setters</span>
+<a name="l00382"></a>00382 <span class="comment"></span>    <a class="code" href="classSetter.html" title="Virtual base class for classes that receive a value, maybe transform it and then do something with it...">Setter</a>**      _analogOutputs;
 <a name="l00383"></a>00383 <span class="comment"></span>
-<a name="l00384"></a>00384 <span class="comment">    /// Arduino analog input pin which yields the arduino battery voltage</span>
-<a name="l00385"></a>00385 <span class="comment"></span>    uint8_t       _batteryVoltageAnalogPin;
+<a name="l00384"></a>00384 <span class="comment">    /// Number of Setters in _analogOutputs</span>
+<a name="l00385"></a>00385 <span class="comment"></span>    uint8_t       _numAnalogOutputs;
 <a name="l00386"></a>00386 <span class="comment"></span>
-<a name="l00387"></a>00387 <span class="comment">    /// Max time in milliseconds between RCOIP replies</span>
-<a name="l00388"></a>00388 <span class="comment"></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>  _replyInterval; 
+<a name="l00387"></a>00387 <span class="comment">    /// Arduino analog input pin which yields the arduino battery voltage</span>
+<a name="l00388"></a>00388 <span class="comment"></span>    uint8_t       _batteryVoltageAnalogPin;
 <a name="l00389"></a>00389 <span class="comment"></span>
-<a name="l00390"></a>00390 <span class="comment">    /// Max time in milliseconds between received request before RCRx is considered to be disconnected</span>
-<a name="l00391"></a>00391 <span class="comment"></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>  _failInterval; 
+<a name="l00390"></a>00390 <span class="comment">    /// Max time in milliseconds between RCOIP replies</span>
+<a name="l00391"></a>00391 <span class="comment"></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>  _replyInterval; 
 <a name="l00392"></a>00392 <span class="comment"></span>
-<a name="l00393"></a>00393 <span class="comment">    /// The time we last got a RCOIP request from the transmitter</span>
-<a name="l00394"></a>00394 <span class="comment"></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> _lastRequestTime;
+<a name="l00393"></a>00393 <span class="comment">    /// Max time in milliseconds between received request before RCRx is considered to be disconnected</span>
+<a name="l00394"></a>00394 <span class="comment"></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>  _failInterval; 
 <a name="l00395"></a>00395 <span class="comment"></span>
-<a name="l00396"></a>00396 <span class="comment">    /// The last time we sent a RCOIP reply to the transmitter</span>
-<a name="l00397"></a>00397 <span class="comment"></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> _lastReplyTime;
+<a name="l00396"></a>00396 <span class="comment">    /// The time we last got a RCOIP request from the transmitter</span>
+<a name="l00397"></a>00397 <span class="comment"></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> _lastRequestTime;
 <a name="l00398"></a>00398 <span class="comment"></span>
-<a name="l00399"></a>00399 <span class="comment">    /// Whether RCRx is considered to be connected to the transmitter</span>
-<a name="l00400"></a>00400 <span class="comment"></span>    <span class="keywordtype">boolean</span>       _connected;
+<a name="l00399"></a>00399 <span class="comment">    /// The last time we sent a RCOIP reply to the transmitter</span>
+<a name="l00400"></a>00400 <span class="comment"></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> _lastReplyTime;
 <a name="l00401"></a>00401 <span class="comment"></span>
-<a name="l00402"></a>00402 <span class="comment">    /// The value of the RSSI (receiver signal strength indicator)</span>
-<a name="l00403"></a>00403 <span class="comment">    /// in the last request received</span>
-<a name="l00404"></a>00404 <span class="comment"></span>    uint16_t      _rssi;
-<a name="l00405"></a>00405 };
-<a name="l00406"></a>00406 <span class="comment"></span>
-<a name="l00407"></a>00407 <span class="comment">/// @example DifferentialRCRx.pde</span>
-<a name="l00408"></a>00408 <span class="comment">/// This simple example handles 3 RCOIP receiver channels. Its configured like this:</span>
-<a name="l00409"></a>00409 <span class="comment">/// 1 Differential motor driver (receiver channels 0 and 1) driving 4 analog outputs configured as 2 HBridges</span>
-<a name="l00410"></a>00410 <span class="comment">/// 1 Digital output (horn) (receiver channel 4)</span>
-<a name="l00411"></a>00411 <span class="comment">/// This is the program used for the tank shown in http://www.open.com.au/mikem/arduino/RCKit/tank.mp4</span>
-<a name="l00412"></a>00412 <span class="comment"></span><span class="comment"></span>
-<a name="l00413"></a>00413 <span class="comment">/// @example HBridge2RCRx.pde</span>
-<a name="l00414"></a>00414 <span class="comment">/// This simple example handles 3 RCOIP receiver channels. Its configured like this:</span>
-<a name="l00415"></a>00415 <span class="comment">/// This is the program used for the car shown in http://www.open.com.au/mikem/arduino/RCKit/car1.mp4</span>
-<a name="l00416"></a>00416 <span class="comment"></span><span class="comment"></span>
-<a name="l00417"></a>00417 <span class="comment">/// @example HBridgeRCRx.pde</span>
-<a name="l00418"></a>00418 <span class="comment">/// This simple example handles 4 RCOIP receiver channels. Its configured like this:</span>
-<a name="l00419"></a>00419 <span class="comment">/// 2 Servos (receiver channels 0, 1) (left joystick on RCTx)</span>
-<a name="l00420"></a>00420 <span class="comment">/// 1 HBridge (receiver channel 3) driving 2 analog outputs (right joystick on RCTx)</span>
-<a name="l00421"></a>00421 <span class="comment">/// 1 Digital output (horn) (receiver channel 4)</span>
-<a name="l00422"></a>00422 <span class="comment"></span><span class="comment"></span>
-<a name="l00423"></a>00423 <span class="comment">/// @example RCRxWiShield.pde</span>
-<a name="l00424"></a>00424 <span class="comment">/// Receives RCOIP commmands from a WiShield and uses them to set servo</span>
-<a name="l00425"></a>00425 <span class="comment">/// and digital outputs.</span>
-<a name="l00426"></a>00426 <span class="comment">/// This simple example handles 5 RCOIP receiver channels. Its configured like this:</span>
-<a name="l00427"></a>00427 <span class="comment">/// 4 Servos (receiver channels 0, 1, 2, 3)</span>
-<a name="l00428"></a>00428 <span class="comment">/// 1 Digital output (horn) (receiver channel 4)</span>
-<a name="l00429"></a>00429 <span class="comment"></span><span class="comment"></span>
-<a name="l00430"></a>00430 <span class="comment">/// @example RCRxEthernet.pde</span>
-<a name="l00431"></a>00431 <span class="comment">/// Receives RCOIP commmands on Ethernet and uses them to set servo</span>
-<a name="l00432"></a>00432 <span class="comment">/// and digital outputs.</span>
-<a name="l00433"></a>00433 <span class="comment">/// This simple example handles 5 RCOIP receiver channels. Its configured like this:</span>
-<a name="l00434"></a>00434 <span class="comment">/// 4 Servos (receiver channels 0, 1, 2, 3)</span>
-<a name="l00435"></a>00435 <span class="comment">/// 1 Digital output (horn) (receiver channel 4)</span>
-<a name="l00436"></a>00436 <span class="comment"></span><span class="comment"></span>
-<a name="l00437"></a>00437 <span class="comment">/// @example TestSuite.pde</span>
-<a name="l00438"></a>00438 <span class="comment">/// Self test suite for RCKit classes</span>
-<a name="l00439"></a>00439 <span class="comment"></span>
-<a name="l00440"></a>00440 
-<a name="l00441"></a>00441 <span class="preprocessor">#endif </span>
+<a name="l00402"></a>00402 <span class="comment">    /// Whether RCRx is considered to be connected to the transmitter</span>
+<a name="l00403"></a>00403 <span class="comment"></span>    <span class="keywordtype">boolean</span>       _connected;
+<a name="l00404"></a>00404 <span class="comment"></span>
+<a name="l00405"></a>00405 <span class="comment">    /// The value of the RSSI (receiver signal strength indicator)</span>
+<a name="l00406"></a>00406 <span class="comment">    /// in the last request received</span>
+<a name="l00407"></a>00407 <span class="comment"></span>    uint16_t      _rssi;
+<a name="l00408"></a>00408 };
+<a name="l00409"></a>00409 <span class="comment"></span>
+<a name="l00410"></a>00410 <span class="comment">/// @example DifferentialRCRx.pde</span>
+<a name="l00411"></a>00411 <span class="comment">/// This simple example handles 3 RCOIP receiver channels. Its configured like this:</span>
+<a name="l00412"></a>00412 <span class="comment">/// 1 Differential motor driver (receiver channels 0 and 1) driving 4 analog outputs configured as 2 HBridges</span>
+<a name="l00413"></a>00413 <span class="comment">/// 1 Digital output (horn) (receiver channel 4)</span>
+<a name="l00414"></a>00414 <span class="comment">/// This is the program used for the tank shown in http://www.open.com.au/mikem/arduino/RCKit/tank.mp4</span>
+<a name="l00415"></a>00415 <span class="comment"></span><span class="comment"></span>
+<a name="l00416"></a>00416 <span class="comment">/// @example HBridge2RCRx.pde</span>
+<a name="l00417"></a>00417 <span class="comment">/// This simple example handles 3 RCOIP receiver channels. Its configured like this:</span>
+<a name="l00418"></a>00418 <span class="comment">/// This is the program used for the car shown in http://www.open.com.au/mikem/arduino/RCKit/car1.mp4</span>
+<a name="l00419"></a>00419 <span class="comment"></span><span class="comment"></span>
+<a name="l00420"></a>00420 <span class="comment">/// @example HBridgeRCRx.pde</span>
+<a name="l00421"></a>00421 <span class="comment">/// This simple example handles 4 RCOIP receiver channels. Its configured like this:</span>
+<a name="l00422"></a>00422 <span class="comment">/// 2 Servos (receiver channels 0, 1) (left joystick on RCTx)</span>
+<a name="l00423"></a>00423 <span class="comment">/// 1 HBridge (receiver channel 3) driving 2 analog outputs (right joystick on RCTx)</span>
+<a name="l00424"></a>00424 <span class="comment">/// 1 Digital output (horn) (receiver channel 4)</span>
+<a name="l00425"></a>00425 <span class="comment"></span><span class="comment"></span>
+<a name="l00426"></a>00426 <span class="comment">/// @example RCRxWiShield.pde</span>
+<a name="l00427"></a>00427 <span class="comment">/// Receives RCOIP commmands from a WiShield and uses them to set servo</span>
+<a name="l00428"></a>00428 <span class="comment">/// and digital outputs.</span>
+<a name="l00429"></a>00429 <span class="comment">/// This simple example handles 5 RCOIP receiver channels. Its configured like this:</span>
+<a name="l00430"></a>00430 <span class="comment">/// 4 Servos (receiver channels 0, 1, 2, 3)</span>
+<a name="l00431"></a>00431 <span class="comment">/// 1 Digital output (horn) (receiver channel 4)</span>
+<a name="l00432"></a>00432 <span class="comment"></span><span class="comment"></span>
+<a name="l00433"></a>00433 <span class="comment">/// @example RCRxEthernet.pde</span>
+<a name="l00434"></a>00434 <span class="comment">/// Receives RCOIP commmands on Ethernet and uses them to set servo</span>
+<a name="l00435"></a>00435 <span class="comment">/// and digital outputs.</span>
+<a name="l00436"></a>00436 <span class="comment">/// This simple example handles 5 RCOIP receiver channels. Its configured like this:</span>
+<a name="l00437"></a>00437 <span class="comment">/// 4 Servos (receiver channels 0, 1, 2, 3)</span>
+<a name="l00438"></a>00438 <span class="comment">/// 1 Digital output (horn) (receiver channel 4)</span>
+<a name="l00439"></a>00439 <span class="comment"></span><span class="comment"></span>
+<a name="l00440"></a>00440 <span class="comment">/// @example TestSuite.pde</span>
+<a name="l00441"></a>00441 <span class="comment">/// Self test suite for RCKit classes</span>
+<a name="l00442"></a>00442 <span class="comment"></span>
+<a name="l00443"></a>00443 
+<a name="l00444"></a>00444 <span class="preprocessor">#endif </span>
 </pre></div></div>
 </div>
 
