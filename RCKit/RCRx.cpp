@@ -6,7 +6,11 @@
 // Copyright (C) 2010 Mike McCauley
 // $Id: RCRx.cpp,v 1.3 2010/06/28 00:56:10 mikem Exp $
 
-#include <WProgram.h>
+#if (ARDUINO < 100)
+#include "WProgram.h"
+#else
+#include "Arduino.h"
+#endif
 #include "RCRx.h"
 #include "Setter.h"
 #include "RCOIP.h"

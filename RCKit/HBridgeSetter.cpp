@@ -7,7 +7,11 @@
 // $Id: HBridgeSetter.cpp,v 1.3 2010/06/28 00:56:10 mikem Exp $
 
 #include "HBridgeSetter.h"
+#if (ARDUINO < 100)
 #include "WProgram.h"
+#else
+#include "Arduino.h"
+#endif
 
 /////////////////////////////////////////////////////////////////////
 HBridgeSetter::HBridgeSetter(Setter* targetA, Setter* targetB) : Setter(targetA)

@@ -7,7 +7,11 @@
 // $Id: AnalogSetter.cpp,v 1.3 2010/06/28 00:56:10 mikem Exp $
 
 #include "AnalogSetter.h"
+#if ARDUINO >= 100
+#include <Arduino.h>
+#else
 #include <wiring.h>
+#endif
 #include <HardwareSerial.h>
 
 /////////////////////////////////////////////////////////////////////

@@ -10,7 +10,11 @@
 #define SetterDebug_h
 
 #include "Setter.h"
+#if ARDUINO >= 100
+#include <Arduino.h>
+#else
 #include <wiring.h>
+#endif
 
 /////////////////////////////////////////////////////////////////////
 /// \class SetterDebug SetterDebug.h <SetterDebug.h>

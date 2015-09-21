@@ -7,7 +7,11 @@
 // $Id: DigitalSetter.cpp,v 1.2 2010/06/28 00:56:10 mikem Exp $
 
 #include "DigitalSetter.h"
+#if (ARDUINO < 100)
 #include "WProgram.h"
+#else
+#include "Arduino.h"
+#endif
 
 /////////////////////////////////////////////////////////////////////
 DigitalSetter::DigitalSetter(uint8_t pin) : Setter()

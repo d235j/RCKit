@@ -74,7 +74,8 @@ Correct operation of the WiShield requires you to set the jumper on the WiShield
        INT0        USE_DIG0_INTR  Digital pin 2
        D8          USE_DIG8_INTR  Digital pin 8
 </pre></div><p>
-In order for WiShield library to support UDP (as needed by this module), you MUST set UDP UIP_CONF_UDP to 1 in uip-conf.h. This is an unfortunate but necessary requirement, otherwise UDP support will not be compiled into the WiShield library. Further, you must edit apps-conf.h and make sure the only APP_* defined is APP_UDPAPP. Failure to do this will cause compile errors. A modified version of the WiShield library already edited for use with RCKit is available at <a href="http://www.open.com.au/mikem/arduino/WiShield-v1.3.0-0-mikem-RCKit.zip">http://www.open.com.au/mikem/arduino/WiShield-v1.3.0-0-mikem-RCKit.zip</a><p>
+For YellowJacket (which has no jumper), leave it as USE_DIG0_INTR.<p>
+In order for WiShield library to support UDP (as needed by this module), you MUST set UIP_CONF_UDP to 1 in uip-conf.h. This is an unfortunate but necessary requirement, otherwise UDP support will not be compiled into the WiShield library. Further, you must edit apps-conf.h and make sure the only APP_* defined is APP_UDPAPP. Failure to do this will cause compile errors. A modified version of the WiShield library already edited for use with RCKit is available at <a href="http://www.open.com.au/mikem/arduino/WiShield-v1.3.0-0-mikem-RCKit.zip">http://www.open.com.au/mikem/arduino/WiShield-v1.3.0-0-mikem-RCKit.zip</a><p>
 WiShield will work with Arduino Mega, but with difficulty. The problem is that with the Mega, the SPI pins that are required for interface with WiShield come out on different pins to the smaller form factor arduinos like Diecimila and Duemilanove. So, to make the Mega work with the WiShield, you have to reroute the SPI pin to different Arduino pins, as per <a href="http://asynclabs.com/forums/viewtopic.php?f=13&t=19&hilit=mega&start=10">http://asynclabs.com/forums/viewtopic.php?f=13&amp;t=19&amp;hilit=mega&amp;start=10</a><p>
 This library has been tested with Duemilanove and WiShield 1.0 and iPhone 3.0<p>
 <dl class="user" compact><dt><b>Installation</b></dt><dd></dd></dl>
@@ -149,7 +150,7 @@ Set the output for channel n. Calls the <a class="el" href="classSetter.html" ti
 
 <p>References <a class="el" href="Setter_8cpp-source.html#l00026">Setter::input()</a>.</p>
 
-<p>Referenced by <a class="el" href="RCRx_8cpp-source.html#l00172">handleRequest()</a>.</p>
+<p>Referenced by <a class="el" href="RCRx_8cpp-source.html#l00176">handleRequest()</a>.</p>
 
 </div>
 </div><p>
@@ -231,7 +232,7 @@ Call to handle an incoming UDP message containing an <a class="el" href="classRC
   </table>
 </dl>
 
-<p>References <a class="el" href="RCOIP_8h-source.html#l00200">RCOIPv1CmdSetAnalogChannels::channels</a>, <a class="el" href="RCOIP_8h-source.html#l00155">RC_VERSION1</a>, <a class="el" href="RCRx_8cpp-source.html#l00158">sendReply()</a>, <a class="el" href="RCRx_8cpp-source.html#l00138">setAnalogOutput()</a>, and <a class="el" href="RCOIP_8h-source.html#l00192">RCOIPv1CmdSetAnalogChannels::version</a>.</p>
+<p>References <a class="el" href="RCOIP_8h-source.html#l00200">RCOIPv1CmdSetAnalogChannels::channels</a>, <a class="el" href="RCOIP_8h-source.html#l00155">RC_VERSION1</a>, <a class="el" href="RCRx_8cpp-source.html#l00162">sendReply()</a>, <a class="el" href="RCRx_8cpp-source.html#l00142">setAnalogOutput()</a>, and <a class="el" href="RCOIP_8h-source.html#l00192">RCOIPv1CmdSetAnalogChannels::version</a>.</p>
 
 </div>
 </div><p>
@@ -254,7 +255,7 @@ Call to handle an incoming UDP message containing an <a class="el" href="classRC
 Called by <a class="el" href="classRCRx.html" title="Remote Control Receiver module for RCOIP protocol on Arduino.">RCRx</a> when no <a class="el" href="classRCOIP.html" title="This section describes the RCOIP (Remote Control Over IP) protocol.">RCOIP</a> message has been received for more than failInterval miliseconds. Calls the failsafe function for all configured output Setters. 
 <p>References <a class="el" href="Setter_8cpp-source.html#l00033">Setter::failsafe()</a>.</p>
 
-<p>Referenced by <a class="el" href="RCRx_8cpp-source.html#l00210">periodicTask()</a>.</p>
+<p>Referenced by <a class="el" href="RCRx_8cpp-source.html#l00214">periodicTask()</a>.</p>
 
 </div>
 </div><p>
@@ -275,7 +276,7 @@ Called by <a class="el" href="classRCRx.html" title="Remote Control Receiver mod
 
 <p>
 Called by <a class="el" href="classRCRx.html" title="Remote Control Receiver module for RCOIP protocol on Arduino.">RCRx</a> periodically (typically twice per second) to do period processing such as detecting loss of messages 
-<p>References <a class="el" href="RCRx_8cpp-source.html#l00199">failsafe()</a>.</p>
+<p>References <a class="el" href="RCRx_8cpp-source.html#l00203">failsafe()</a>.</p>
 
 </div>
 </div><p>
@@ -318,14 +319,14 @@ Returns whether the <a class="el" href="classRCRx.html" title="Remote Control Re
 Sends an <a class="el" href="classRCOIP.html" title="This section describes the RCOIP (Remote Control Over IP) protocol.">RCOIP</a> reply message Usually called internally at most once every _replyInterval milliseconds. 
 <p>References <a class="el" href="RCOIP_8h-source.html#l00223">RCOIPv1ReplyReceiverStatus::batteryVoltage</a>, <a class="el" href="RCOIP_8h-source.html#l00159">RC_VERSION</a>, <a class="el" href="RCOIP_8h-source.html#l00219">RCOIPv1ReplyReceiverStatus::RSSI</a>, and <a class="el" href="RCOIP_8h-source.html#l00215">RCOIPv1ReplyReceiverStatus::version</a>.</p>
 
-<p>Referenced by <a class="el" href="RCRx_8cpp-source.html#l00172">handleRequest()</a>.</p>
+<p>Referenced by <a class="el" href="RCRx_8cpp-source.html#l00176">handleRequest()</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="RCRx_8h-source.html">RCRx.h</a><li>RCRx.cpp</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Thu Jul 22 09:31:12 2010 for RCKit by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Wed Jan 4 17:58:56 2012 for RCKit by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

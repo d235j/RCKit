@@ -25,42 +25,46 @@
 <a name="l00010"></a>00010 <span class="preprocessor"></span><span class="preprocessor">#define SetterDebug_h</span>
 <a name="l00011"></a>00011 <span class="preprocessor"></span>
 <a name="l00012"></a>00012 <span class="preprocessor">#include "Setter.h"</span>
-<a name="l00013"></a>00013 <span class="preprocessor">#include &lt;wiring.h&gt;</span>
-<a name="l00014"></a>00014 <span class="comment"></span>
-<a name="l00015"></a>00015 <span class="comment">/////////////////////////////////////////////////////////////////////</span>
-<a name="l00016"></a>00016 <span class="comment">/// \class SetterDebug SetterDebug.h &lt;SetterDebug.h&gt;</span>
-<a name="l00017"></a>00017 <span class="comment">/// \brief Class for testing Setters.</span>
-<a name="l00018"></a>00018 <span class="comment">/// Used by the sample TestSuite sketch.</span>
-<a name="l00019"></a>00019 <span class="comment">///</span>
-<a name="l00020"></a><a class="code" href="classSetterDebug.html">00020</a> <span class="comment"></span><span class="keyword">class </span><a class="code" href="classSetterDebug.html" title="Class for testing Setters. Used by the sample TestSuite sketch.">SetterDebug</a> : <span class="keyword">public</span> <a class="code" href="classSetter.html" title="Virtual base class for classes that receive a value, maybe transform it and then...">Setter</a>
-<a name="l00021"></a>00021 {   
-<a name="l00022"></a>00022 <span class="keyword">public</span>:<span class="comment"></span>
-<a name="l00023"></a>00023 <span class="comment">    /// Input the value to be inverted</span>
-<a name="l00024"></a>00024 <span class="comment">    /// \param[in] value The input value</span>
-<a name="l00025"></a>00025 <span class="comment"></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSetterDebug.html#a1abd0cced11071de3728183f7ca7a1b">input</a>(<span class="keywordtype">int</span> value);
-<a name="l00026"></a>00026 <span class="comment"></span>
-<a name="l00027"></a>00027 <span class="comment">    /// Return the last value that </span>
-<a name="l00028"></a>00028 <span class="comment">    /// was set here</span>
-<a name="l00029"></a>00029 <span class="comment"></span>    <span class="keywordtype">int</span> <a class="code" href="classSetterDebug.html#6eb118fc80e4de3cc5a31c88140bac8d">lastValue</a>();
+<a name="l00013"></a>00013 <span class="preprocessor">#if ARDUINO &gt;= 100</span>
+<a name="l00014"></a>00014 <span class="preprocessor"></span><span class="preprocessor">#include &lt;Arduino.h&gt;</span>
+<a name="l00015"></a>00015 <span class="preprocessor">#else</span>
+<a name="l00016"></a>00016 <span class="preprocessor"></span><span class="preprocessor">#include &lt;wiring.h&gt;</span>
+<a name="l00017"></a>00017 <span class="preprocessor">#endif</span>
+<a name="l00018"></a>00018 <span class="preprocessor"></span><span class="comment"></span>
+<a name="l00019"></a>00019 <span class="comment">/////////////////////////////////////////////////////////////////////</span>
+<a name="l00020"></a>00020 <span class="comment">/// \class SetterDebug SetterDebug.h &lt;SetterDebug.h&gt;</span>
+<a name="l00021"></a>00021 <span class="comment">/// \brief Class for testing Setters.</span>
+<a name="l00022"></a>00022 <span class="comment">/// Used by the sample TestSuite sketch.</span>
+<a name="l00023"></a>00023 <span class="comment">///</span>
+<a name="l00024"></a><a class="code" href="classSetterDebug.html">00024</a> <span class="comment"></span><span class="keyword">class </span><a class="code" href="classSetterDebug.html" title="Class for testing Setters. Used by the sample TestSuite sketch.">SetterDebug</a> : <span class="keyword">public</span> <a class="code" href="classSetter.html" title="Virtual base class for classes that receive a value, maybe transform it and then...">Setter</a>
+<a name="l00025"></a>00025 {   
+<a name="l00026"></a>00026 <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00027"></a>00027 <span class="comment">    /// Input the value to be inverted</span>
+<a name="l00028"></a>00028 <span class="comment">    /// \param[in] value The input value</span>
+<a name="l00029"></a>00029 <span class="comment"></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSetterDebug.html#a1abd0cced11071de3728183f7ca7a1b">input</a>(<span class="keywordtype">int</span> value);
 <a name="l00030"></a>00030 <span class="comment"></span>
-<a name="l00031"></a>00031 <span class="comment">    /// Called when the source of input data is lost, </span>
-<a name="l00032"></a>00032 <span class="comment">    /// and the Setter is required to fail in a safe way</span>
-<a name="l00033"></a>00033 <span class="comment"></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSetterDebug.html#3b6658a41b795f8a0a25c20d30a3a6c7">failsafe</a>();
+<a name="l00031"></a>00031 <span class="comment">    /// Return the last value that </span>
+<a name="l00032"></a>00032 <span class="comment">    /// was set here</span>
+<a name="l00033"></a>00033 <span class="comment"></span>    <span class="keywordtype">int</span> <a class="code" href="classSetterDebug.html#6eb118fc80e4de3cc5a31c88140bac8d">lastValue</a>();
 <a name="l00034"></a>00034 <span class="comment"></span>
-<a name="l00035"></a>00035 <span class="comment">    /// Returns whether there has been a </span>
-<a name="l00036"></a>00036 <span class="comment">    /// failsafe event</span>
-<a name="l00037"></a>00037 <span class="comment"></span>    <span class="keywordtype">boolean</span> <a class="code" href="classSetterDebug.html#1f26f63c231eb0e47b830b91a4dc4e4b">failed</a>();
-<a name="l00038"></a>00038 
-<a name="l00039"></a>00039 <span class="keyword">protected</span>:
-<a name="l00040"></a>00040 
-<a name="l00041"></a>00041 <span class="keyword">private</span>:
-<a name="l00042"></a>00042     <span class="keywordtype">int</span>     _lastValue;
-<a name="l00043"></a>00043     <span class="keywordtype">boolean</span> _failed;
-<a name="l00044"></a>00044 };
-<a name="l00045"></a>00045 
-<a name="l00046"></a>00046 <span class="preprocessor">#endif </span>
+<a name="l00035"></a>00035 <span class="comment">    /// Called when the source of input data is lost, </span>
+<a name="l00036"></a>00036 <span class="comment">    /// and the Setter is required to fail in a safe way</span>
+<a name="l00037"></a>00037 <span class="comment"></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSetterDebug.html#3b6658a41b795f8a0a25c20d30a3a6c7">failsafe</a>();
+<a name="l00038"></a>00038 <span class="comment"></span>
+<a name="l00039"></a>00039 <span class="comment">    /// Returns whether there has been a </span>
+<a name="l00040"></a>00040 <span class="comment">    /// failsafe event</span>
+<a name="l00041"></a>00041 <span class="comment"></span>    <span class="keywordtype">boolean</span> <a class="code" href="classSetterDebug.html#1f26f63c231eb0e47b830b91a4dc4e4b">failed</a>();
+<a name="l00042"></a>00042 
+<a name="l00043"></a>00043 <span class="keyword">protected</span>:
+<a name="l00044"></a>00044 
+<a name="l00045"></a>00045 <span class="keyword">private</span>:
+<a name="l00046"></a>00046     <span class="keywordtype">int</span>     _lastValue;
+<a name="l00047"></a>00047     <span class="keywordtype">boolean</span> _failed;
+<a name="l00048"></a>00048 };
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050 <span class="preprocessor">#endif </span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Thu Jul 22 09:31:12 2010 for RCKit by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Wed Jan 4 17:58:56 2012 for RCKit by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

@@ -4,7 +4,7 @@
 ///
 /// \mainpage RCKit library for Arduino
 ///
-/// This is the Arduino RCKit 1.1 library.
+/// This is the Arduino RCKit 1.2 library.
 /// 
 /// RCKit provides a kit of software objects that make it easy to build an
 /// RCOIP  (Remote Control Over IP) receiver on Arduino. RCOIP protocol is used to
@@ -49,7 +49,7 @@
 /// \li http://www.youtube.com/watch?v=lzRpyqnD6_M
 ///
 /// The version of the package that this documentation refers to can be downloaded 
-/// from http://www.open.com.au/mikem/arduino/RCKit/RCKit-1.1.zip
+/// from http://www.open.com.au/mikem/arduino/RCKit/RCKit-1.2.zip
 /// You can find the latest version at http://www.open.com.au/mikem/arduino/RCKit
 ///
 /// Tested on Arduino Duemilanove, Diecimila, Mega and Asynclabs Yellowjacket
@@ -172,6 +172,7 @@
 /// \par Revision History
 /// \version 1.0 Initial release
 /// \version 1.1 Added Linear
+/// \version 1.2 Compiles under Arduino 1.0
 
 // Copyright (C) 2010 Mike McCauley
 // $Id: RCRx.h,v 1.4 2010/06/30 02:48:59 mikem Exp mikem $
@@ -230,8 +231,10 @@ class Setter;
 ///       D8          USE_DIG8_INTR  Digital pin 8
 /// \endcode
 ///
+/// For YellowJacket (which has no jumper), leave it as USE_DIG0_INTR.
+///
 /// In order for WiShield library to support UDP (as needed by this module), 
-/// you MUST set UDP UIP_CONF_UDP to 1 in uip-conf.h. This is an unfortunate but necessary requirement, 
+/// you MUST set UIP_CONF_UDP to 1 in uip-conf.h. This is an unfortunate but necessary requirement, 
 /// otherwise UDP support will not be compiled into the WiShield library. 
 /// Further, you must edit apps-conf.h and make sure the only APP_* defined is APP_UDPAPP. 
 /// Failure to do this will cause compile errors. A modified version of the WiShield library already 

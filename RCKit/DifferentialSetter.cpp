@@ -7,7 +7,9 @@
 // $Id: DifferentialSetter.cpp,v 1.1 2010/06/28 00:56:10 mikem Exp $
 
 #include "DifferentialSetter.h"
+#if (ARDUINO < 100)
 #include "WProgram.h"
+#endif
 
 /////////////////////////////////////////////////////////////////////
 DifferentialLRSetter::DifferentialLRSetter(DifferentialSetter* target) : Setter(target)

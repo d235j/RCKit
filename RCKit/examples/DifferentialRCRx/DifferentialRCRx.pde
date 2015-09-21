@@ -22,9 +22,6 @@
 #include "DigitalSetter.h"
 #include <AccelStepper.h>
 
-// Declare the receiver object
-RCRx rcrx;
-
 // We handle 3 channels:
 // Receiver channel 2 is unused
 // 1 Differential motor drive (receiver channels 0 and 1) driving analog outputs on pins 3, 5, 6 and 9
