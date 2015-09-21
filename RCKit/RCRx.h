@@ -51,7 +51,7 @@
 /// \li http://www.youtube.com/watch?v=lzRpyqnD6_M
 ///
 /// The version of the package that this documentation refers to can be downloaded 
-/// from http://www.open.com.au/mikem/arduino/RCKit/RCKit-2.3.zip
+/// from http://www.open.com.au/mikem/arduino/RCKit/RCKit-2.4.zip
 /// You can find the latest version at http://www.open.com.au/mikem/arduino/RCKit
 ///
 /// You can also find online help and disussion at http://groups.google.com/group/rckit
@@ -124,7 +124,7 @@
 /// \par RCTx iPhone App
 ///
 /// RCTx is an RCOIP compliant transmitter for iPhone available on the Apple App Store 
-/// at http://itunes.apple.com/app/rctx/id377833472?mt=8
+/// at https://itunes.apple.com/us/app/rctx/id567423127?mt=8
 ///
 /// You can use it with the WiShieldTransceiver object to use WiFi to communicate directly to a WiShield 
 /// equipped RCRx receiver. Or you can use it with the EthernetTransceiver object 
@@ -275,6 +275,7 @@
 ///              I could not reproduce this). Changed examples to suit.
 /// \version 2.3 Found and documented a problem when you use Arduino digital pin D4 as an output with
 ///              WiFi-Bee, which uses that pin as HIBERNATE. Dont use D4 as output with WiFi-Bee
+/// \version 2.4 Fixed incorrect link to RCTx on App Store.
 
 #ifndef RCRx_h
 #define RCRx_h
