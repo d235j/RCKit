@@ -8,7 +8,7 @@
 
 PROJNAME = RCKit
 # Dont forget to also change the version at the top of RCRx.h and in the full package name
-DISTFILE = $(PROJNAME)-1.3.zip
+DISTFILE = $(PROJNAME)-2.0.zip
 
 all:	doxygen dist upload
 

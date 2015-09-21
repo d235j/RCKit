@@ -68,9 +68,8 @@
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7c7789ffcd99b2cdd85889adf8f55dd0"></a><!-- doxytag: member="RCRx::RCRx" ref="a7c7789ffcd99b2cdd85889adf8f55dd0" args="()" -->
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRCRx.html#a7c7789ffcd99b2cdd85889adf8f55dd0">RCRx</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. After contruction and initialisation, call the <a class="el" href="classRCRx.html#a86cee85b44ffce3fff5609b96892c77c">init()</a> and <a class="el" href="classRCRx.html#a5b4f1b1be349e2f3abb4e17bd16d31f1">run()</a> functions. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRCRx.html#a7c7789ffcd99b2cdd85889adf8f55dd0">RCRx</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRCRx.html#a28b5811fc64a3b9292ee3975e60dd5cd">setTransceiver</a> (<a class="el" href="classTransceiver.html">Transceiver</a> *transceiver)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRCRx.html#a568c83ab82fc901b1e9ef5551d89137d">setOutputs</a> (<a class="el" href="classSetter.html">Setter</a> **analogOutputs, uint8_t numAnalogOutputs)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRCRx.html#ae0eddc2ed95e988973cad17478a10630">setAnalogOutput</a> (uint8_t channel, int value)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRCRx.html#a86cee85b44ffce3fff5609b96892c77c">init</a> ()</td></tr>
@@ -85,23 +84,31 @@ Public Member Functions</h2></td></tr>
 <div class="textblock"><p>Remote Control Receiver module for <a class="el" href="classRCOIP.html" title="This section describes the RCOIP (Remote Control Over IP) protocol.">RCOIP</a> protocol on Arduino. </p>
 <dl class="user"><dt><b>Overview</b></dt><dd>This class implements a receiver for <a class="el" href="classRCOIP.html" title="This section describes the RCOIP (Remote Control Over IP) protocol.">RCOIP</a> (Remote Control Over IP). It starts and manages a WiFi receiver, which receives UDP messages containing <a class="el" href="classRCOIP.html" title="This section describes the RCOIP (Remote Control Over IP) protocol.">RCOIP</a> commands such as remote control channel values. When channel setting commands are received they are translated into output values which are sent to <a class="el" href="classSetter.html" title="Virtual base class for classes that receive a value, maybe transform it and then do something with it...">Setter</a> objects to control the phycical output devices and pins on the Arduino. Supports WiShield 1.0 etc.</dd></dl>
 <dl class="user"><dt><b>Outputs</b></dt><dd><a class="el" href="classRCRx.html" title="Remote Control Receiver module for RCOIP protocol on Arduino.">RCRx</a> maps <a class="el" href="classRCOIP.html" title="This section describes the RCOIP (Remote Control Over IP) protocol.">RCOIP</a> channels to physical output devices through the analogOutputs array. This is an array of <a class="el" href="classSetter.html" title="Virtual base class for classes that receive a value, maybe transform it and then do something with it...">Setter</a> objects, one for each physical output to be controlled by <a class="el" href="classRCRx.html" title="Remote Control Receiver module for RCOIP protocol on Arduino.">RCRx</a>. Whenever a <a class="el" href="classRCOIP.html" title="This section describes the RCOIP (Remote Control Over IP) protocol.">RCOIP</a> message is received with new channel settings, the input() function of each <a class="el" href="classSetter.html" title="Virtual base class for classes that receive a value, maybe transform it and then do something with it...">Setter</a> with new data will be called. This will cause each <a class="el" href="classSetter.html" title="Virtual base class for classes that receive a value, maybe transform it and then do something with it...">Setter</a> to set its physical output in response to the remote control data received by an <a class="el" href="classRCOIP.html" title="This section describes the RCOIP (Remote Control Over IP) protocol.">RCOIP</a>.</dd></dl>
-<dl class="user"><dt><b>Failsafe</b></dt><dd><a class="el" href="classRCRx.html" title="Remote Control Receiver module for RCOIP protocol on Arduino.">RCRx</a> supports failsafe behaviour if a connection to the transmitter is lost. <a class="el" href="classRCRx.html" title="Remote Control Receiver module for RCOIP protocol on Arduino.">RCRx</a> monitors the time of each received <a class="el" href="classRCOIP.html" title="This section describes the RCOIP (Remote Control Over IP) protocol.">RCOIP</a> request. If no request is received for more than failInterval milliseconds, it will be considered as disconnected, and the <a class="el" href="classRCRx.html#a888c1758fc4cc27a97aacc62e187dbd0">failsafe()</a> function of every <a class="el" href="classSetter.html" title="Virtual base class for classes that receive a value, maybe transform it and then do something with it...">Setter</a> will be called, allowing each <a class="el" href="classSetter.html" title="Virtual base class for classes that receive a value, maybe transform it and then do something with it...">Setter</a> to adopt its failsafe configuration (eg throttle to 0 etc). This allows remote control vehicles to fail safe if the transmitter fails or goes out of range.</dd></dl>
-<dl class="user"><dt><b>WiShield Library Configuration</b></dt><dd>Requires the Asynclabs WiShield library. See <a href="http://asynclabs.com/wiki/index.php?title=WiShield_library">http://asynclabs.com/wiki/index.php?title=WiShield_library</a> Install the WiShield library in the libraries directory of your arduino IDE installation, then follow the configuration steps below:</dd></dl>
-<p>Support of RSSI (receiver signal strength indicator) requires mods to WiShield library g2100.c as per <a href="http://asynclabs.com/forums/viewtopic.php?f=10&t=385&start=0.">http://asynclabs.com/forums/viewtopic.php?f=10&amp;t=385&amp;start=0.</a> You dont have to add this but its a good feature. It is included in the prebuilt WiShield library mentioned below.</p>
-<p>Correct operation of the WiShield requires you to set the jumper on the WiShield to INT0 or DIG8 to select the arduino pin to use for WiShield interrupts, and also to make sure it agrees with the settings of USE_DIG0_INTR or USE_DIG8_INTR in spi.h in the WiShield library (which defaults to using Arduino digital pin 2, and which means setting the WiShield jumper to INT0 setting). Yes, the naming conventions are inconsistent :-(. In summary: </p>
-<div class="fragment"><pre class="fragment">  WiShield jumper   spi.h          Arduino
-       INT0        USE_DIG0_INTR  Digital pin 2
-       D8          USE_DIG8_INTR  Digital pin 8
-</pre></div><p>For YellowJacket (which has no jumper), leave it as USE_DIG0_INTR.</p>
-<p>In order for WiShield library to support UDP (as needed by this module), you MUST set UIP_CONF_UDP to 1 in uip-conf.h. This is an unfortunate but necessary requirement, otherwise UDP support will not be compiled into the WiShield library. Further, you must edit apps-conf.h and make sure the only APP_* defined is APP_UDPAPP. Failure to do this will cause compile errors. A modified version of the WiShield library already modified for use with RCKit (including RSSI support) is available at <a href="http://www.open.com.au/mikem/arduino/WiShield-v1.3.0-0-mikem-RCKit.zip">http://www.open.com.au/mikem/arduino/WiShield-v1.3.0-0-mikem-RCKit.zip</a></p>
-<p>WiShield will work with Arduino Mega, but with difficulty. The problem is that with the Mega, the SPI pins that are required for interface with WiShield come out on different pins to the smaller form factor arduinos like Diecimila and Duemilanove. So, to make the Mega work with the WiShield, you have to reroute the SPI pin to different Arduino pins, as per <a href="http://asynclabs.com/forums/viewtopic.php?f=13&t=19&hilit=mega&start=10">http://asynclabs.com/forums/viewtopic.php?f=13&amp;t=19&amp;hilit=mega&amp;start=10</a></p>
-<p>This library has been tested with Duemilanove and WiShield 1.0 and iPhone 3.0</p>
-<dl class="user"><dt><b>Installation</b></dt><dd></dd></dl>
-<p>Install in the usual way: unzip the distribution zip file to the libraries sub-folder of your sketchbook. Dont foget the prerequisites too. </p>
+<dl class="user"><dt><b>Failsafe</b></dt><dd><a class="el" href="classRCRx.html" title="Remote Control Receiver module for RCOIP protocol on Arduino.">RCRx</a> supports failsafe behaviour if a connection to the transmitter is lost. <a class="el" href="classRCRx.html" title="Remote Control Receiver module for RCOIP protocol on Arduino.">RCRx</a> monitors the time of each received <a class="el" href="classRCOIP.html" title="This section describes the RCOIP (Remote Control Over IP) protocol.">RCOIP</a> request. If no request is received for more than failInterval milliseconds, it will be considered as disconnected, and the <a class="el" href="classRCRx.html#a888c1758fc4cc27a97aacc62e187dbd0">failsafe()</a> function of every <a class="el" href="classSetter.html" title="Virtual base class for classes that receive a value, maybe transform it and then do something with it...">Setter</a> will be called, allowing each <a class="el" href="classSetter.html" title="Virtual base class for classes that receive a value, maybe transform it and then do something with it...">Setter</a> to adopt its failsafe configuration (eg throttle to 0 etc). This allows remote control vehicles to fail safe if the transmitter fails or goes out of range. </dd></dl>
 <dl><dt><b>Examples: </b></dt><dd>
-<p><a class="el" href="DifferentialRCRx_8pde-example.html#_a0">DifferentialRCRx.pde</a>, <a class="el" href="HBridge2RCRx_8pde-example.html#_a0">HBridge2RCRx.pde</a>, <a class="el" href="HBridgeRCRx_8pde-example.html#_a0">HBridgeRCRx.pde</a>, and <a class="el" href="RCRx_8pde-example.html#_a0">RCRx.pde</a>.</p>
+<p><a class="el" href="DifferentialRCRx_8pde-example.html#_a0">DifferentialRCRx.pde</a>, <a class="el" href="HBridge2RCRx_8pde-example.html#_a0">HBridge2RCRx.pde</a>, <a class="el" href="HBridgeRCRx_8pde-example.html#_a0">HBridgeRCRx.pde</a>, <a class="el" href="RCRxEthernet_8pde-example.html#_a0">RCRxEthernet.pde</a>, and <a class="el" href="RCRxWiShield_8pde-example.html#_a0">RCRxWiShield.pde</a>.</p>
 </dd>
-</dl></div><hr/><h2>Member Function Documentation</h2>
+</dl></div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a7c7789ffcd99b2cdd85889adf8f55dd0"></a><!-- doxytag: member="RCRx::RCRx" ref="a7c7789ffcd99b2cdd85889adf8f55dd0" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">RCRx::RCRx </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Constructor. After contruction and initialisation, call the <a class="el" href="classRCRx.html#a86cee85b44ffce3fff5609b96892c77c">init()</a> and <a class="el" href="classRCRx.html#a5b4f1b1be349e2f3abb4e17bd16d31f1">run()</a> functions. </p>
+
+<p>References <a class="el" href="RCOIP_8h.html#ae656264b283e59847422e34b48d7f1b9">RCOIP_DEFAULT_FAIL_INTERVAL</a>, and <a class="el" href="RCOIP_8h.html#a63435510eff2993ca94acb3ddbafaee2">RCOIP_DEFAULT_REPLY_INTERVAL</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="a829d0f04d18be5e42b93c840ebd5066e"></a><!-- doxytag: member="RCRx::connected" ref="a829d0f04d18be5e42b93c840ebd5066e" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -133,7 +140,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Called by <a class="el" href="classRCRx.html" title="Remote Control Receiver module for RCOIP protocol on Arduino.">RCRx</a> when no <a class="el" href="classRCOIP.html" title="This section describes the RCOIP (Remote Control Over IP) protocol.">RCOIP</a> message has been received for more than failInterval miliseconds. Calls the failsafe function for all configured output Setters. </p>
+<p>Called by <a class="el" href="classRCRx.html" title="Remote Control Receiver module for RCOIP protocol on Arduino.">RCRx</a> when no <a class="el" href="classRCOIP.html" title="This section describes the RCOIP (Remote Control Over IP) protocol.">RCOIP</a> message has been received for more than failInterval milliseconds. Calls the failsafe function for all configured output Setters. </p>
 
 <p>References <a class="el" href="classSetter.html#a5357be314ac9b0cc3fab7e3f26211cdd">Setter::failsafe()</a>.</p>
 
@@ -171,17 +178,19 @@ Public Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Call to handle an incoming UDP message containing an <a class="el" href="classRCOIP.html" title="This section describes the RCOIP (Remote Control Over IP) protocol.">RCOIP</a> command message. This is usually only called from within <a class="el" href="classRCRx.html" title="Remote Control Receiver module for RCOIP protocol on Arduino.">RCRx</a>, but could be called externally for testing purposes etc. </p>
+<p>Call to handle an incoming UDP message containing an <a class="el" href="classRCOIP.html" title="This section describes the RCOIP (Remote Control Over IP) protocol.">RCOIP</a> command message. This is usually only called from the <a class="el" href="classTransceiver.html" title="Abstract base class for a transceiver device that will send and receive messages on behalf of RCRx cl...">Transceiver</a>, but could be called externally for testing purposes etc. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">msg</td><td>Pointer to the UDP message </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">len</td><td>Length of the UDP mesage in bytes </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">rssi</td><td>Receiver Signal Strength as reported by the WiFi receiver when the message was received. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">msg</td><td>Pointer to the <a class="el" href="classRCOIP.html" title="This section describes the RCOIP (Remote Control Over IP) protocol.">RCOIP</a> message </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">len</td><td>Length of the PCOIP mesage in bytes </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">rssi</td><td>Receiver Signal Strength as reported by the WiFi receiver (if any) when the message was received. </td></tr>
   </table>
   </dd>
 </dl>
 
 <p>References <a class="el" href="structRCOIPv1CmdSetAnalogChannels.html#a96505c0ccb36245a2a7306507a03b459">RCOIPv1CmdSetAnalogChannels::channels</a>, <a class="el" href="RCOIP_8h.html#a8f5457b3f1de4b86694f490018a5edd5">RC_VERSION1</a>, <a class="el" href="classRCRx.html#a057ec8c6c1e179d30e9f1d2eec1dcbea">sendReply()</a>, <a class="el" href="classRCRx.html#ae0eddc2ed95e988973cad17478a10630">setAnalogOutput()</a>, and <a class="el" href="structRCOIPv1CmdSetAnalogChannels.html#ad332c34ffb6c7f2d32ee4c3bc6cea6bb">RCOIPv1CmdSetAnalogChannels::version</a>.</p>
+
+<p>Referenced by <a class="el" href="classTransceiver.html#ac4a2fc72c1c8dbaad6e641461d259265">Transceiver::receivedRequest()</a>.</p>
 
 </div>
 </div>
@@ -199,8 +208,10 @@ Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 <p>Initialises the wireless WiFi receiver Call once at startup time after addresses etc have been configured. </p>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="DifferentialRCRx_8pde-example.html#a8">DifferentialRCRx.pde</a>, <a class="el" href="HBridge2RCRx_8pde-example.html#a6">HBridge2RCRx.pde</a>, <a class="el" href="HBridgeRCRx_8pde-example.html#a7">HBridgeRCRx.pde</a>, and <a class="el" href="RCRx_8pde-example.html#a5">RCRx.pde</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="DifferentialRCRx_8pde-example.html#a10">DifferentialRCRx.pde</a>, <a class="el" href="HBridge2RCRx_8pde-example.html#a8">HBridge2RCRx.pde</a>, <a class="el" href="HBridgeRCRx_8pde-example.html#a9">HBridgeRCRx.pde</a>, <a class="el" href="RCRxEthernet_8pde-example.html#a7">RCRxEthernet.pde</a>, and <a class="el" href="RCRxWiShield_8pde-example.html#a7">RCRxWiShield.pde</a>.</dd>
 </dl>
+<p>References <a class="el" href="classTransceiver.html#a55cf7d2dcc2a4160683da0f81950027c">Transceiver::init()</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a4d977724492697cccc1e2453d5609997"></a><!-- doxytag: member="RCRx::periodicTask" ref="a4d977724492697cccc1e2453d5609997" args="()" -->
@@ -216,9 +227,11 @@ Public Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Called by <a class="el" href="classRCRx.html" title="Remote Control Receiver module for RCOIP protocol on Arduino.">RCRx</a> periodically (typically twice per second) to do period processing such as detecting loss of messages </p>
+<p>Called by <a class="el" href="classRCRx.html" title="Remote Control Receiver module for RCOIP protocol on Arduino.">RCRx</a> periodically (typically twice per second) to do period processing such as detecting loss of incoming messages </p>
 
 <p>References <a class="el" href="classRCRx.html#a888c1758fc4cc27a97aacc62e187dbd0">failsafe()</a>.</p>
+
+<p>Referenced by <a class="el" href="classRCRx.html#a5b4f1b1be349e2f3abb4e17bd16d31f1">run()</a>.</p>
 
 </div>
 </div>
@@ -235,9 +248,11 @@ Public Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Call this to process pending Wireless events. Call this as often as possible in your main loop. Runs the wireless driver stack. </p>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="DifferentialRCRx_8pde-example.html#a9">DifferentialRCRx.pde</a>, <a class="el" href="HBridge2RCRx_8pde-example.html#a7">HBridge2RCRx.pde</a>, <a class="el" href="HBridgeRCRx_8pde-example.html#a8">HBridgeRCRx.pde</a>, and <a class="el" href="RCRx_8pde-example.html#a6">RCRx.pde</a>.</dd>
+<p>Call this to process pending Wireless events. Call this as often as possible in your main loop. Runs the wireless driver stack or whatever in the <a class="el" href="classTransceiver.html" title="Abstract base class for a transceiver device that will send and receive messages on behalf of RCRx cl...">Transceiver</a>, and does internal housekeeping. </p>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="DifferentialRCRx_8pde-example.html#a11">DifferentialRCRx.pde</a>, <a class="el" href="HBridge2RCRx_8pde-example.html#a9">HBridge2RCRx.pde</a>, <a class="el" href="HBridgeRCRx_8pde-example.html#a10">HBridgeRCRx.pde</a>, <a class="el" href="RCRxEthernet_8pde-example.html#a8">RCRxEthernet.pde</a>, and <a class="el" href="RCRxWiShield_8pde-example.html#a8">RCRxWiShield.pde</a>.</dd>
 </dl>
+<p>References <a class="el" href="classRCRx.html#a4d977724492697cccc1e2453d5609997">periodicTask()</a>, and <a class="el" href="classTransceiver.html#a9c3680581781ebe0442662cd46650475">Transceiver::run()</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a057ec8c6c1e179d30e9f1d2eec1dcbea"></a><!-- doxytag: member="RCRx::sendReply" ref="a057ec8c6c1e179d30e9f1d2eec1dcbea" args="()" -->
@@ -255,7 +270,7 @@ Public Member Functions</h2></td></tr>
 <div class="memdoc">
 <p>Sends an <a class="el" href="classRCOIP.html" title="This section describes the RCOIP (Remote Control Over IP) protocol.">RCOIP</a> reply message Usually called internally at most once every _replyInterval milliseconds. </p>
 
-<p>References <a class="el" href="structRCOIPv1ReplyReceiverStatus.html#a97241f27294bce17590ced602cd8e18e">RCOIPv1ReplyReceiverStatus::batteryVoltage</a>, <a class="el" href="RCOIP_8h.html#af2e25cbcb209c0b45820d31b2fdef4ba">RC_VERSION</a>, <a class="el" href="structRCOIPv1ReplyReceiverStatus.html#a167365a362b1b2847b9f22413d34e956">RCOIPv1ReplyReceiverStatus::RSSI</a>, and <a class="el" href="structRCOIPv1ReplyReceiverStatus.html#a248e5f8a34887af720fa56d20bce26dd">RCOIPv1ReplyReceiverStatus::version</a>.</p>
+<p>References <a class="el" href="structRCOIPv1ReplyReceiverStatus.html#a97241f27294bce17590ced602cd8e18e">RCOIPv1ReplyReceiverStatus::batteryVoltage</a>, <a class="el" href="RCOIP_8h.html#af2e25cbcb209c0b45820d31b2fdef4ba">RC_VERSION</a>, <a class="el" href="structRCOIPv1ReplyReceiverStatus.html#a167365a362b1b2847b9f22413d34e956">RCOIPv1ReplyReceiverStatus::RSSI</a>, <a class="el" href="classTransceiver.html#afea66aa38e1c4d71683b3031802c900d">Transceiver::sendReply()</a>, and <a class="el" href="structRCOIPv1ReplyReceiverStatus.html#a248e5f8a34887af720fa56d20bce26dd">RCOIPv1ReplyReceiverStatus::version</a>.</p>
 
 <p>Referenced by <a class="el" href="classRCRx.html#a3132814af2f57ce796850fa32bd96185">handleRequest()</a>.</p>
 
@@ -332,8 +347,33 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="DifferentialRCRx_8pde-example.html#a7">DifferentialRCRx.pde</a>, <a class="el" href="HBridge2RCRx_8pde-example.html#a5">HBridge2RCRx.pde</a>, <a class="el" href="HBridgeRCRx_8pde-example.html#a6">HBridgeRCRx.pde</a>, and <a class="el" href="RCRx_8pde-example.html#a4">RCRx.pde</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="DifferentialRCRx_8pde-example.html#a8">DifferentialRCRx.pde</a>, <a class="el" href="HBridge2RCRx_8pde-example.html#a6">HBridge2RCRx.pde</a>, <a class="el" href="HBridgeRCRx_8pde-example.html#a7">HBridgeRCRx.pde</a>, <a class="el" href="RCRxEthernet_8pde-example.html#a5">RCRxEthernet.pde</a>, and <a class="el" href="RCRxWiShield_8pde-example.html#a5">RCRxWiShield.pde</a>.</dd>
 </dl>
+</div>
+</div>
+<a class="anchor" id="a28b5811fc64a3b9292ee3975e60dd5cd"></a><!-- doxytag: member="RCRx::setTransceiver" ref="a28b5811fc64a3b9292ee3975e60dd5cd" args="(Transceiver *transceiver)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RCRx::setTransceiver </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classTransceiver.html">Transceiver</a> *&#160;</td>
+          <td class="paramname"><em>transceiver</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Tells this object where to find the transceiver object. <a class="el" href="classRCRx.html" title="Remote Control Receiver module for RCOIP protocol on Arduino.">RCRx</a> requires an instance of a <a class="el" href="classTransceiver.html" title="Abstract base class for a transceiver device that will send and receive messages on behalf of RCRx cl...">Transceiver</a> object for the device that you are using to Received <a class="el" href="classRCOIP.html" title="This section describes the RCOIP (Remote Control Over IP) protocol.">RCOIP</a> requests from the transmitter. A number of Transceivers are provided with <a class="el" href="classRCRx.html" title="Remote Control Receiver module for RCOIP protocol on Arduino.">RCRx</a>:</p>
+<ul>
+<li><a class="el" href="classWiShieldTransceiver.html" title="Defines a WiSHield RCOIP Transceiver.">WiShieldTransceiver</a> for WiFi transport with WiSheild</li>
+<li><a class="el" href="classEthernetTransceiver.html" title="Defines an Ethernet RCOIP Transceiver.">EthernetTransceiver</a> for Ethernet transport with Ethernet shield or you can define your own. </li>
+</ul>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="DifferentialRCRx_8pde-example.html#a9">DifferentialRCRx.pde</a>, <a class="el" href="HBridge2RCRx_8pde-example.html#a7">HBridge2RCRx.pde</a>, <a class="el" href="HBridgeRCRx_8pde-example.html#a8">HBridgeRCRx.pde</a>, <a class="el" href="RCRxEthernet_8pde-example.html#a6">RCRxEthernet.pde</a>, and <a class="el" href="RCRxWiShield_8pde-example.html#a6">RCRxWiShield.pde</a>.</dd>
+</dl>
+<p>References <a class="el" href="classTransceiver.html#a02a8e3aeaa702f6dcbf685ce817510ae">Transceiver::setDelegate()</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>

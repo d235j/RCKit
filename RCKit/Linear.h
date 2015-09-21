@@ -4,7 +4,7 @@
 /// \author  Mike McCauley (mikem@open.com.au)
 ///
 // Copyright (C) 2010 Mike McCauley
-// $Id: Linear.h,v 1.2 2010/06/28 00:56:10 mikem Exp $
+// $Id: Linear.h,v 1.1 2012/08/25 06:18:13 mikem Exp mikem $
 
 #ifndef Linear_h
 #define Linear_h

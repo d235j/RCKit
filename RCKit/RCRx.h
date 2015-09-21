@@ -1,7 +1,9 @@
 // RCRx.h
 //
 // Remote Control Receiver module for RCOIP protocol
-///
+// Copyright (C) 2010-2012 Mike McCauley
+// $Id: RCRx.h,v 1.5 2012/08/25 06:18:13 mikem Exp mikem $
+
 /// \mainpage RCKit library for Arduino
 ///
 /// This is the Arduino RCKit library.
@@ -49,7 +51,7 @@
 /// \li http://www.youtube.com/watch?v=lzRpyqnD6_M
 ///
 /// The version of the package that this documentation refers to can be downloaded 
-/// from http://www.open.com.au/mikem/arduino/RCKit/RCKit-1.3.zip
+/// from http://www.open.com.au/mikem/arduino/RCKit/RCKit-2.0.zip
 /// You can find the latest version at http://www.open.com.au/mikem/arduino/RCKit
 ///
 /// You can also find online help and disussion at http://groups.google.com/group/rckit
@@ -61,9 +63,26 @@
 /// and avr-libc-1.6.2-5.11,
 /// cross-avr-binutils-2.19-9.1 and cross-avr-gcc43-4.3.3_20081022-9.3
 ///
+/// \par RCRx
+///
+/// RCRx class is an RCOIP receiver. It works with Arduino and a range of communications hardware like 
+/// WiShield and Ethernet to receiver commands from an
+/// RCOIP compliant Transmitter (such as the RCTx iPhone app available on the Apple App Store).
+///
+/// When the RCRx object is constructed, it must be given an array of Setter objects. 
+/// When a RCOIPv1CmdSetAnalogChannels message is received by RCRx, The Setter corresponding to each 
+/// Channel value in the RCOIPv1CmdSetAnalogChannels command will be passed to the 
+/// respective Setter in the analogOutputs array. 
+/// The Arduino software is expected to be configured so that each analogOutput is connected to a Setter that
+/// will implement the received value, perhaps by setting an analog or digital output on an Arduino pin. 
+/// Setter objects are provided to achieve this. See below.
+///
+/// RCRx will automatically respond to received commands with RCOIPv1ReplyReceiverStatus messages 
+/// as appropriate to the configured timeouts etc. See the RCOIP protocol document for more details.
+/// 
 /// \par Setters
 ///
-/// Setter are object that receive a value, maybe transform it and then do something with it. Typically
+/// Setter classes are objects that receive a value, maybe transform it and then do something with it. Typically
 /// they set an output pin according to the received input value, but almost any other transformation, 
 /// output or communication can be imagined. 
 ///
@@ -83,51 +102,41 @@
 /// \li Limiter
 /// \li Linear
 /// 
-/// \par RCRx
-///
-/// RCRx class is a Wi-Fi RCOIP receiver. It works with Arduino and WiShield and any 
-/// RCOIP compliant Wi-Fi Transmitter (such as the RCTx iPhone app available on the Apple App Store).
-///
-/// By default, RCRx is configured as an Ad-Hoc Wi-Fi network with SSID of 'RCArduino' 
-/// By default, the network is Open (ie no encryption) and
-/// It is configured with a static IP address of 169.254.1.100.
-/// These setting can be changed by editing RCRx.cpp in the RCKit distribution.
-///
-/// When the RCRx object is constructed, it must be given an array of Setter objects. 
-/// When a RCOIPv1CmdSetAnalogChannels is received by RCRx, The Setter corresponding to each 
-/// Channel value in the RCOIPv1CmdSetAnalogChannels command will be passed to the 
-/// respective Setter in the analogOutputs array. 
-/// The Arduino software is expected to be configured so that each analogOutput is connected to a Setter that
-/// will implement the received value, perhaps by setting an analog or digital output on an Arduino pin. 
-/// Setter objects are provided to achieve this.
-///
-/// RCRx will automatically respond to received commands with RCOIPv1ReplyReceiverStatus messages 
-/// as appropriate to the configured timeouts etc. See the RCOIP protocol document for more details.
-/// 
 /// \par Example Sketches
 ///
 /// Several example Arduino sketches are included, including a regression 
-/// test suite and a sample complete 5 channel receiver with Servo outputs.
+/// test suite and a sample complete 5 channel receiver with Servo outputs for WiFi and Ethernet.
 ///
-/// The following example sketches are provided:
-/// \li TestSuite
-/// \li RCRx 
-/// \li HBridgeRCRx
-/// \li HBridge2RCRx
-/// \li DifferentialRCRx
+/// \par Transceivers
 ///
+/// Version 2.0 of this library added the concept of a Transceiver, in order to be able to support 
+/// multiple type of communications transport.
+/// A Transceiver is an object responsible for communicating with an RCOIP transmitter. Several types of 
+/// Transceiver are supported by the standard RCRx library:
+/// - WiShield WiFi shield or Yellowjacket, using the WiShield library.
+/// - Ethernet shield, or EtherTen, using the standard Arduino Ethernet library.
+/// You can define your own subclass of the Transceiver class to implement your own transports 
+/// (if you do so, consider contributing it back to the RCRx project).
+/// The main RCRx reciver object must be told where it Transceiver object is, using setTransceiver(). 
+/// Thereafter it will use that 
+/// Transceiver to receive RCOIP requests and to send replies back to the transmitter.
 ///
 /// \par RCTx iPhone App
 ///
 /// RCTx is an RCOIP compliant transmitter for iPhone available on the Apple App Store 
 /// at http://itunes.apple.com/app/rctx/id377833472?mt=8
 ///
-/// It presents a simulated RC transmitter with 2 joysticks and a number of switches. 
+/// You can use it with the WiShieldTransceiver object to use WiFi to communicate directly to a WiShield 
+/// equipped RCRx receiver. Or you can use it with the EthernetTransceiver object 
+/// and your LAN and Wirelesss Access Point to communicate to an Ethernet equipped RCRx receiver. 
+///
+/// RCTx presents a simulated RC transmitter with 2 joysticks and a number of switches. 
 /// The left josystick sets channels 0 and 1 and the right joystick channels 2 and 3. 
 /// The switches set channels 4 through 9 inclusive. The one connected to channel 4 is momentary contact.
-/// The install and configure RCTx:
+///
+/// To install and configure RCTx to work with a WiShield equipped RCRx:
 /// \li install the RCTx app on your iPhone.
-/// \li Build and upload your RCRx program you your Arduino+WiShield hardware
+/// \li Build and upload your RCRx+WiShieldTransceiver program you your Arduino+WiShield hardware
 /// \li Power up the Arduino
 /// \li Turn on your iphone, go to Settings, Wi-Fi. Enable Wi-Fi
 /// \li After about 30 seconds, you should see the RCArduino network appear as an available 
@@ -136,91 +145,46 @@
 /// Enter an IP Address of 169.254.1.1. Enter a Subnet Mask of 255.255.0.0
 /// \li After about 10 seconds, the iPhone should be successfully connected to the RCArduino network. 
 /// You now have an ad-hoc connection to the Arduino. The Arduino will have the address  169.254.1.100 
-/// and the iPhone wil have address 169.254.1.1
+/// and the iPhone will have address 169.254.1.1
 /// \li Start the RCTx app on the iPhone.
 /// \li After about 5 seconds, you should see the NO CONNECT in the bottom left corner change to 
 /// show RSSI and the correct battery voltage (if the Arduino is so equipped).
 /// \li Move the josticks and buttons. This will send RCOIP commands to the Arduino. 
 /// RCRx in the arduino will convert them to analog output signals to drive your hardware. Have fun.
 ///
+/// To install and configure RCTx to work with an Ethernet equipped RCRx:
+/// \li install the RCTx app on your iPhone.
+/// \li Edit the sketch to set the desired IP address and MAC address for the Arduino
+/// \li Build and upload your RCRx+EthernetTransceiver program you your Arduino+Ethernet hardware. 
+/// \li Power up the Arduino, connect it to your LAN.
+/// \li Turn on your iphone, go to Settings, Wi-Fi. Enable Wi-Fi and connect to your LANs 
+///     wireless access point in the usual way.
+/// \li Start the RCTx app on the iPhone.
+/// \li Tap on the little 'i' icon on the bottom right, get the profiles page. 
+///    Edit the default profile or create a new profile and enter the IP address of the Arduino that you configured above.
+/// \li After about 5 seconds, you should see the NO CONNECT in the bottom left corner change to 
+/// show RSSI of 0 and the correct battery voltage (if the Arduino is so equipped).
+/// \li Move the josticks and buttons. This will send RCOIP commands to the Arduino. 
+/// RCRx in the arduino will convert them to analog output signals to drive your hardware. Have fun.
+///
+///
 /// \par Prerequisites
 ///
-/// Requires:
-/// \li WiShield (http://asynclabs.com) 
+/// \li WiShield (http://asynclabs.com) edited and configured to suit (see below for help)
 /// \li AccelStepper (http://www.open.com.au/mikem/arduino/AccelStepper) 
-/// libraries to also be installed.
+///
+/// These prerequisites must be installed in the libraries directory of your Arduino devlopment environment, 
+/// even if you are not going to use them with RCRx, otherwise the RCRx will not build.
 /// 
 /// \par Installation
 ///
 /// Install in the usual way: unzip the distribution zip file to the libraries
-/// sub-folder of your sketchbook. 
-///
-/// \author  Mike McCauley (mikem@open.com.au)
-///
-/// This software and the RCOIP protocol is Copyright (C) 2010 Mike McCauley. Use is subject to license
-/// conditions. The main licensing options available are GPL V2 or Commercial:
-/// 
-/// \par Open Source Licensing GPL V2
-/// This is the appropriate option if you want to share the source code of your
-/// application with everyone you distribute it to, and you also want to give them
-/// the right to share who uses it. If you wish to use this software under Open
-/// Source Licensing, you must contribute all your source code to the open source
-/// community in accordance with the GPL Version 2 when your application is
-/// distributed. See http://www.gnu.org/copyleft/gpl.html
-/// 
-/// \par Commercial Licensing
-/// This is the appropriate option if you are creating proprietary applications
-/// and you are not prepared to distribute and share the source code of your
-/// application. Contact info@open.com.au for details.
-///
-/// \par Revision History
-/// \version 1.0 Initial release
-/// \version 1.1 Added Linear
-/// \version 1.2 Compiles under Arduino 1.0
-/// \version 1.3 Fix error in test suite tat prevvented correct tests with latest versions of AccelStepper
-///              Added documentation for examples.
-///              Added new class MotorControllerSetter, which can be used to control motor controllers with
-///              a direction and (PWM) speed pin.
-
-// Copyright (C) 2010 Mike McCauley
-// $Id: RCRx.h,v 1.4 2010/06/30 02:48:59 mikem Exp mikem $
-
-#ifndef RCRx_h
-#define RCRx_h
-
-#include <WiShield.h>
-#include <inttypes.h>
-
-class Setter;
-
-/////////////////////////////////////////////////////////////////////
-/// \class RCRx RCRx.h <RCRx.h>
-/// \brief Remote Control Receiver module for RCOIP protocol on Arduino
-///
-/// \par Overview
-/// This class implements a receiver for RCOIP (Remote Control Over IP). It starts and manages a 
-/// WiFi receiver, which receives UDP messages containing RCOIP commands such as remote control channel 
-/// values. When channel setting commands are received they are translated into output values which are sent 
-/// to Setter objects to control the phycical output devices and pins on the Arduino. 
-/// Supports WiShield 1.0 etc.
-///
-/// \par Outputs
-/// RCRx maps RCOIP channels to physical output devices through the analogOutputs array. This is an array 
-/// of Setter objects, one for each physical output to be controlled by RCRx. Whenever a RCOIP message 
-/// is received with new channel settings, the input() function of each Setter with new data will be 
-/// called. This will cause each Setter to set its physical output in response to the remote control
-/// data received by an RCOIP. 
-///
-/// \par Failsafe
-/// RCRx supports failsafe behaviour if a connection to the transmitter is lost.
-/// RCRx monitors the time of each received RCOIP request. If no request is received for more than 
-/// failInterval milliseconds, it will be considered as disconnected, and the failsafe() function of 
-/// every Setter will be called, allowing each Setter to adopt its failsafe configuration 
-/// (eg throttle to 0 etc). This allows remote control vehicles to fail safe if the transmitter 
-/// fails or goes out of range.
+/// sub-folder of your Arduino IDE sketchbook. 
 ///
 /// \par WiShield Library Configuration
-/// Requires the Asynclabs WiShield library. See http://asynclabs.com/wiki/index.php?title=WiShield_library
+///
+/// Requires the Asynclabs WiShield library to be installed, even if you are not using
+/// the WiShieldTransceiver. See http://asynclabs.com/wiki/index.php?title=WiShield_library
 /// Install the  WiShield library in the libraries directory of your arduino IDE installation, 
 /// then follow the configuration steps below:
 ///
@@ -245,8 +209,10 @@ class Setter;
 /// you MUST set UIP_CONF_UDP to 1 in uip-conf.h. This is an unfortunate but necessary requirement, 
 /// otherwise UDP support will not be compiled into the WiShield library. 
 /// Further, you must edit apps-conf.h and make sure the only APP_* defined is APP_UDPAPP. 
-/// Failure to do this will cause compile errors. A modified version of the WiShield library already 
-/// modified for use with RCKit (including RSSI support) is available at 
+/// Failure to do this will cause compile errors. 
+///
+/// A modified version of the WiShield library already 
+/// modified and configured for use with RCKit (including RSSI support) is available at 
 /// http://www.open.com.au/mikem/arduino/WiShield-v1.3.0-0-mikem-RCKit.zip
 ///
 /// WiShield will work with Arduino Mega, but with difficulty. The problem is that with the Mega, the SPI 
@@ -254,18 +220,103 @@ class Setter;
 /// factor arduinos like Diecimila and Duemilanove. So, to make the Mega work with the WiShield, you 
 /// have to reroute the SPI pin to different Arduino pins, as per 
 /// http://asynclabs.com/forums/viewtopic.php?f=13&t=19&hilit=mega&start=10
+/// 
+/// By default, WiShieldTransceiver is configured as an Ad-Hoc Wi-Fi network with SSID of 'RCArduino' 
+/// By default, the network is Open (ie no encryption) and
+/// It is configured with a static IP address of 169.254.1.100.
+/// These setting can be changed by editing WiShieldTransceiver.cpp in the RCKit distribution.
 ///
+/// \author  Mike McCauley (mikem@open.com.au)
+/// Do not contact the author directly unless it is to discuss commercial licensing. 
+/// See above for support and discussion groups.
+///
+/// This software and the RCOIP protocol is Copyright (C) 2010-20112 Mike McCauley. Use is subject to license
+/// conditions. The main licensing options available are GPL V2 or Commercial:
+/// 
 /// This library has been tested with Duemilanove and WiShield 1.0 and iPhone 3.0
 ///
-/// \par Installation
+/// \par Open Source Licensing GPL V2
 ///
-/// Install in the usual way: unzip the distribution zip file to the libraries
-/// sub-folder of your sketchbook. Dont foget the prerequisites too.
+/// This is the appropriate option if you want to share the source code of your
+/// application with everyone you distribute it to, and you also want to give them
+/// the right to share who uses it. If you wish to use this software under Open
+/// Source Licensing, you must contribute all your source code to the open source
+/// community in accordance with the GPL Version 2 when your application is
+/// distributed. See http://www.gnu.org/copyleft/gpl.html
+/// 
+/// \par Commercial Licensing
+///
+/// This is the appropriate option if you are creating proprietary applications
+/// and you are not prepared to distribute and share the source code of your
+/// application. Contact info@open.com.au for details.
+///
+/// \par Revision History
+///
+/// \version 1.0 Initial release
+/// \version 1.1 Added Linear
+/// \version 1.2 Compiles under Arduino 1.0
+/// \version 1.3 Fix error in test suite tat prevvented correct tests with latest versions of AccelStepper
+///              Added documentation for examples.
+///              Added new class MotorControllerSetter, which can be used to control motor controllers with
+///              a direction and (PWM) speed pin.
+/// \version 2.0 Caution: API Change: existing RCRx sketches will not work with this new version without (minor) 
+///              modifications.
+///              Separate the WiShield WiFi driver code out into a separate Transceiver object.
+///              Rationalise some includes and headers
+///              Add support for WiShield and Ethernet transceivers, with examples to suit
+
+#ifndef RCRx_h
+#define RCRx_h
+
+#if (ARDUINO < 100)
+#include "WProgram.h"
+#else
+#include "Arduino.h"
+#endif
+
+class Setter;
+class Transceiver;
+
+/////////////////////////////////////////////////////////////////////
+/// \class RCRx RCRx.h <RCRx.h>
+/// \brief Remote Control Receiver module for RCOIP protocol on Arduino.
+///
+/// \par Overview
+/// This class implements a receiver for RCOIP (Remote Control Over IP). It starts and manages a 
+/// WiFi receiver, which receives UDP messages containing RCOIP commands such as remote control channel 
+/// values. When channel setting commands are received they are translated into output values which are sent 
+/// to Setter objects to control the phycical output devices and pins on the Arduino. 
+/// Supports WiShield 1.0 etc.
+///
+/// \par Outputs
+/// RCRx maps RCOIP channels to physical output devices through the analogOutputs array. This is an array 
+/// of Setter objects, one for each physical output to be controlled by RCRx. Whenever a RCOIP message 
+/// is received with new channel settings, the input() function of each Setter with new data will be 
+/// called. This will cause each Setter to set its physical output in response to the remote control
+/// data received by an RCOIP. 
+///
+/// \par Failsafe
+/// RCRx supports failsafe behaviour if a connection to the transmitter is lost.
+/// RCRx monitors the time of each received RCOIP request. If no request is received for more than 
+/// failInterval milliseconds, it will be considered as disconnected, and the failsafe() function of 
+/// every Setter will be called, allowing each Setter to adopt its failsafe configuration 
+/// (eg throttle to 0 etc). This allows remote control vehicles to fail safe if the transmitter 
+/// fails or goes out of range.
 class RCRx
 {
 public:
-    /// Constructor. After contruction and initialisation, call the init() and run() functions.
+    /// Constructor. 
+    /// After contruction and initialisation, call the init() and run() functions.
     RCRx();
+
+    /// Tells this object where to find the transceiver object.
+    /// RCRx requires an instance of a Transceiver object for the device that you are using to
+    /// Received RCOIP requests from the transmitter.
+    /// A number of Transceivers are provided with RCRx:
+    /// - WiShieldTransceiver for WiFi transport with WiSheild
+    /// - EthernetTransceiver for Ethernet transport with Ethernet shield
+    /// or you can define your own.
+    void setTransceiver(Transceiver* transceiver);
 
     /// Specifies the Setters that will be used by this receiver to set its output values
     /// Whenever a RCOIP message is received with a new value for channel n, it will be passed
@@ -287,24 +338,25 @@ public:
     void init();
 
     /// Call this to process pending Wireless events. Call this as often as possible in your
-    /// main loop. Runs the wireless driver stack.
+    /// main loop. Runs the wireless driver stack or whatever in the Transceiver, 
+    /// and does internal housekeeping.
     void run();
 
     /// Call to handle an incoming UDP message containing an RCOIP command message.
-    /// This is usually only called from within RCRx, but could be called externally 
+    /// This is usually only called from the Transceiver, but could be called externally 
     /// for testing purposes etc.
-    /// \param[in] msg Pointer to the UDP message
-    /// \param[in] len Length of the UDP mesage in bytes
-    /// \param[in] rssi Receiver Signal Strength as reported by the WiFi receiver 
+    /// \param[in] msg Pointer to the RCOIP message
+    /// \param[in] len Length of the PCOIP mesage in bytes
+    /// \param[in] rssi Receiver Signal Strength as reported by the WiFi receiver (if any)
     /// when the message was received.
     void handleRequest(uint8_t *msg, uint16_t len, uint16_t rssi);
 
-    /// Called by RCRx when no RCOIP message has been received for more than failInterval miliseconds.
+    /// Called by RCRx when no RCOIP message has been received for more than failInterval milliseconds.
     /// Calls the failsafe function for all configured output Setters.
     void failsafe();
 
     /// Called by RCRx periodically (typically twice per second) to do period processing such as 
-    /// detecting loss of messages
+    /// detecting loss of incoming messages
     void periodicTask();
 
     /// Returns whether the RCRx considers itself to be connected to the transmitter.
@@ -320,6 +372,9 @@ public:
 protected:
 
 private:
+    /// The transceiver
+    Transceiver*  _transceiver;
+
     /// Array of output Setters
     Setter**      _analogOutputs;
 
@@ -365,7 +420,16 @@ private:
 /// 1 HBridge (receiver channel 3) driving 2 analog outputs (right joystick on RCTx)
 /// 1 Digital output (horn) (receiver channel 4)
 
-/// @example RCRx.pde
+/// @example RCRxWiShield.pde
+/// Receives RCOIP commmands from a WiShield and uses them to set servo
+/// and digital outputs.
+/// This simple example handles 5 RCOIP receiver channels. Its configured like this:
+/// 4 Servos (receiver channels 0, 1, 2, 3)
+/// 1 Digital output (horn) (receiver channel 4)
+
+/// @example RCRxEthernet.pde
+/// Receives RCOIP commmands on Ethernet and uses them to set servo
+/// and digital outputs.
 /// This simple example handles 5 RCOIP receiver channels. Its configured like this:
 /// 4 Servos (receiver channels 0, 1, 2, 3)
 /// 1 Digital output (horn) (receiver channel 4)

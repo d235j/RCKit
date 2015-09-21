@@ -143,7 +143,7 @@
 /// until perhaps manually reset.
 ///
 // Copyright (C) 2010 Mike McCauley
-// $Id: RCOIP.h,v 1.3 2010/06/30 02:48:59 mikem Exp mikem $
+// $Id: RCOIP.h,v 1.3 2010/06/30 02:48:59 mikem Exp $
 
 #ifndef RCOIP_h
 #define RCOIP_h

@@ -4,7 +4,7 @@
 /// \author  Mike McCauley (mikem@open.com.au)
 ///
 // Copyright (C) 2010 Mike McCauley
-// $Id: MotorControllerSetter.h,v 1.3 2010/06/28 00:56:10 mikem Exp $
+// $Id: MotorControllerSetter.h,v 1.1 2012/08/25 06:18:13 mikem Exp mikem $
 
 #ifndef MotorControllerSetter_h
 #define MotorControllerSetter_h

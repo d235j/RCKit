@@ -9,6 +9,8 @@
 // $Id: $
 
 #include <WiShield.h>
+#include <Ethernet.h>
+#include <SPI.h>
 #include <Servo.h>
 #include "Setter.h"
 #include "Inverter.h"

@@ -5,7 +5,7 @@
 /// \author  Mike McCauley (mikem@open.com.au)
 ///
 // Copyright (C) 2010 Mike McCauley
-// $Id: DifferentialSetter.h,v 1.2 2010/06/30 02:48:59 mikem Exp mikem $
+// $Id: DifferentialSetter.h,v 1.2 2010/06/30 02:48:59 mikem Exp $
 
 #ifndef DifferentialSetter_h
 #define DifferentialSetter_h

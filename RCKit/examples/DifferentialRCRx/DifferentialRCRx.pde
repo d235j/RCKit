@@ -14,12 +14,15 @@
 // Copyright (C) 2010 Mike McCauley
 
 #include <WiShield.h>
+#include <Ethernet.h>
+#include <SPI.h>
+#include <WiShieldTransceiver.h>
 #include <RCRx.h>
 #include <Servo.h>
-#include "AnalogSetter.h"
-#include "HBridgeSetter.h"
-#include "DifferentialSetter.h"
-#include "DigitalSetter.h"
+#include <AnalogSetter.h>
+#include <HBridgeSetter.h>
+#include <DifferentialSetter.h>
+#include <DigitalSetter.h>
 #include <AccelStepper.h>
 
 // We handle 3 channels:
@@ -35,6 +38,13 @@
 
 // Declare the receiver object
 RCRx rcrx;
+
+// Declare the transceiver object, in this case a WiShield WiFi shield for
+// Arduino, or Yellowjacket board (an Arduino with WiShield built in)
+// If you want to change the default IP address, SSID etc, edit
+// WiShieldTtransceiver.cpp
+// Note: other type of transceiver are supported by RCRx
+WiShieldTransceiver transceiver;
 
 #define HORN_PIN 8
 #define NUM_OUTPUTS 5
@@ -69,6 +79,9 @@ void setup()
     
   // Tell the receiver where to send the 5 channels
   rcrx.setOutputs((Setter**)&outputs, NUM_OUTPUTS);
+  
+  // Join the transceiver and the RCRx receiver object together
+  rcrx.setTransceiver(&transceiver);
   
   // Initialise the receiver
   rcrx.init();

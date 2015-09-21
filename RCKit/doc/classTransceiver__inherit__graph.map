@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classEthernetTransceiver.html" title="Defines an Ethernet RCOIP Transceiver." alt="" coords="5,80,144,107"/>
+<area shape="rect" id="node5" href="$classWiShieldTransceiver.html" title="Defines a WiSHield RCOIP Transceiver." alt="" coords="169,80,311,107"/>
+</map>

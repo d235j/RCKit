@@ -4,7 +4,7 @@
 /// \author  Mike McCauley (mikem@open.com.au)
 ///
 // Copyright (C) 2010 Mike McCauley
-// $Id: Linear.cpp,v 1.1 2010/06/18 22:34:41 mikem Exp $
+// $Id: Linear.cpp,v 1.1 2012/08/25 06:18:13 mikem Exp mikem $
 
 #include "Linear.h"
 
